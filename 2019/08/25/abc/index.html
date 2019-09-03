@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="iOS基础,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="json to dic , arr to json123456json to dicNSData *data = [@&amp;quot;json str&amp;quot; dataUsingEncoding:NSUTF8StringEncoding];[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContain">
+<meta name="keywords" content="iOS基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单基础">
+<meta property="og:url" content="https://miaohui.gitee.io/blog/2019/08/25/abc/index.html">
+<meta property="og:site_name" content="李长鸿">
+<meta property="og:description" content="json to dic , arr to json123456json to dicNSData *data = [@&amp;quot;json str&amp;quot; dataUsingEncoding:NSUTF8StringEncoding];[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContain">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-02T15:04:30.957Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简单基础">
+<meta name="twitter:description" content="json to dic , arr to json123456json to dicNSData *data = [@&amp;quot;json str&amp;quot; dataUsingEncoding:NSUTF8StringEncoding];[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContain">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '6FW5HE4YX0',
+      apiKey: '2da9e7fa78cd975d91c8dd47490308f6',
+      indexName: 'github',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://miaohui.gitee.io/blog/2019/08/25/abc/">
+
+
+
+
+
+  <title>简单基础 | 李长鸿</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?40ae5a9f5ef5473f5b3d49d8462931ce";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">李长鸿</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Talk is cheap,Show me the girl.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://miaohui.gitee.io/blog/2019/08/25/abc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李长鸿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.284.284.180/923ee8e7ly8g6bq9lmzp3j208607wwev.jpg?Expires">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李长鸿">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">简单基础</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-25T18:27:20+08:00">
+                2019-08-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS基础/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/08/25/abc/" class="leancloud_visitors" data-flag-title="简单基础">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="json-to-dic-arr-to-json"><a href="#json-to-dic-arr-to-json" class="headerlink" title="json to dic , arr to json"></a>json to dic , arr to json</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">json to dic</span><br><span class="line">NSData *data = [@&quot;json str&quot; dataUsingEncoding:NSUTF8StringEncoding];</span><br><span class="line">[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];</span><br><span class="line">    </span><br><span class="line">arr to json</span><br><span class="line">[NSJSONSerialization dataWithJSONObject:arr options:NSJSONWritingPrettyPrinted error:nil];</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="更改iOS状态栏颜色"><a href="#更改iOS状态栏颜色" class="headerlink" title="更改iOS状态栏颜色"></a>更改iOS状态栏颜色</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UIView *statusBar = [[[UIApplication sharedApplication]valueForKey:@&quot;statusBarWindow&quot;] valueForKey:@&quot;statusBar&quot;];</span><br></pre></td></tr></table></figure>
+
+<h2 id="判断view是不是指定视图的子视图"><a href="#判断view是不是指定视图的子视图" class="headerlink" title="判断view是不是指定视图的子视图"></a>判断view是不是指定视图的子视图</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[statusBar isDescendantOfView:view];</span><br></pre></td></tr></table></figure>
+
+<h2 id="数字格式化"><a href="#数字格式化" class="headerlink" title="数字格式化"></a>数字格式化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NSNumberFormatter *formater = [NSNumberFormatter new];</span><br><span class="line">formater.numberStyle = NSNumberFormatterPercentStyle;</span><br><span class="line">NSString *str = [formater stringFromNumber:@(45)];</span><br></pre></td></tr></table></figure>
+
+<h2 id="NSStirng-编解码"><a href="#NSStirng-编解码" class="headerlink" title="NSStirng 编解码"></a>NSStirng 编解码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">编码：</span><br><span class="line">[@&quot;&quot; stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet letterCharacterSet]];</span><br><span class="line"></span><br><span class="line">解码：</span><br><span class="line">[@&quot;&quot; stringByRemovingPercentEncoding];</span><br></pre></td></tr></table></figure>
+
+<h2 id="CATransaction使用场景，什么时候触发"><a href="#CATransaction使用场景，什么时候触发" class="headerlink" title="CATransaction使用场景，什么时候触发"></a>CATransaction使用场景，什么时候触发</h2><p>CATransaction对象负责将一组动画组合成一个单元来管理，您也可以用它提供的方法来设置动画的持续时间。</p>
+<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><p>HTTPS和HTTP的区别主要为以下四点：</p>
+<ul>
+<li>https协议需要到ca申请证书(Certificate Authority）</li>
+<li>http是超文本传输协议，信息是明文传输，https 则是具有安全性的ssl加密传输协议</li>
+<li>http和https使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443</li>
+<li>http的连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，比http协议安全。<br><code>SSL依靠证书来验证服务器的身份，并为浏览器和服务器之间的通信加密</code> </li>
+</ul>
+<h2 id="性能优化-节省电量，流量"><a href="#性能优化-节省电量，流量" class="headerlink" title="性能优化  节省电量，流量"></a>性能优化  节省电量，流量</h2><ul>
+<li><p>如何让你的应用程序更加省电？<br>答： (1). 如果程序用到定位，需要在定位完毕之后关闭定位，或者降低定位的频率，不停的定位会消耗电量。 (2). 如果用到了蓝牙，需要使用蓝牙时候开启蓝牙，蓝牙用完之后关闭蓝牙，蓝牙也很耗电。 (3). 优化算法，减少循环次数，大量循环会让CPU一直处于忙碌状态，特别费电。 (4). 尽量不要使用网络轮询（心跳包、定时器），使用推送。 (5). timer的时间间隔不宜太短，满足需求即可。 (6). 不要频繁刷新页面，能刷新1行cell的最好刷新一行，尽量不要reloadData。 (7). 线程适量，不宜过多。</p>
+</li>
+<li><p>简单描述一下你在开发的过程中，如何实现程序的性能优化？ 1）.避免庞大的XIB、Storyboard，尽量多用纯代码开发 2）.使用懒加载的方式延迟加载界面 3）.避免反复处理数据 4）.避免使用NSDateFormatter和NSCalendar。 5）.图片缓存的取舍</p>
+</li>
+</ul>
+<h2 id="简述你对UIView、UIWindow和CALayer的理解"><a href="#简述你对UIView、UIWindow和CALayer的理解" class="headerlink" title="简述你对UIView、UIWindow和CALayer的理解"></a>简述你对UIView、UIWindow和CALayer的理解</h2><p>UIView,UIWindow和CALayer都有共同的基类NSObject,UIView继承于UIResponder,所以UIView可以响应用户事件,CALayer是继承于NSObject所以不可以响应用户事件.UIView侧重于对内容的管理,CALayer侧重于对内容的绘制.<br>UIWindow是特殊的UIView,通常一个app只有一个UIWindow,我们可以创建一个视图控制器,然后将这个视图控制器添加到UIWindow上面</p>
+<h2 id="为什么delegate属性都是assign而不是strong？为什么block属性都是copy而不是strong？"><a href="#为什么delegate属性都是assign而不是strong？为什么block属性都是copy而不是strong？" class="headerlink" title="为什么delegate属性都是assign而不是strong？为什么block属性都是copy而不是strong？"></a>为什么delegate属性都是assign而不是strong？为什么block属性都是copy而不是strong？</h2><p>delegate防止循环引用问题。默认情况下，block是存档在栈中，可能被随时回收,进行一次copy操作，就可以放在堆中了。用retain没有用的原因：retain只是增加一次计数，block内存还是在栈中，并没有转移到堆中</p>
+<h2 id="简述NotificationCenter、KVC、KVO、Delegate、Block？并说明它们之间的区别"><a href="#简述NotificationCenter、KVC、KVO、Delegate、Block？并说明它们之间的区别" class="headerlink" title="简述NotificationCenter、KVC、KVO、Delegate、Block？并说明它们之间的区别?"></a>简述NotificationCenter、KVC、KVO、Delegate、Block？并说明它们之间的区别?</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> </span><br><span class="line">KVC其实就是键值编码，对象在调用setValue的时候，首先会去找属性的set方法—&gt;成员属性——&gt;直接找对象的这个属性—&gt;报错，比如在字典转模型的时候这个方法就经常会用到，而这里有个坑就是当模型中的属性和字典的key不一一对应，系统就会调用setValue:forUndefinedKey:报错。所以一般我们会重写这个方法防止报错。</span><br><span class="line"> </span><br><span class="line">block 是一种数据类型，我在开发中主要使用在3个场景：1，它作为一个代码块保存在对象中，需要的去调用就可以，在传值的时候用的特别多。2.作为方法的参数，它的实现由外部来决定，这样方法用起来就比较灵活了。3.作为方法的返回值，它的目的就是代替方法，在这个block作为返回值里可以进行很多的操作，外部调用这个方法的时候只需要知道传入的参数是什么就可以，不用知道内部是怎么实现的。实际开发中需要注意的是它的循环引用的问题，block 是 C 的，一般在ARC使用strong,MRC使用copy。</span><br><span class="line"> </span><br><span class="line">代理其实一般是控制器定义的一个协议，当控制器或某个对象遵循了这个协议，并实现了代理方法，就可以通过代理方法来完成不同对象的一些操作或数据传递了。代理有严格的语法，能够实现的方法必须有明确的声明。还有就是代理是一对一的，在一个应用中的控制流程是可以追踪的，而由于通知是可以实现多对多，是很难追踪到的，这点在做调试的时候代理检测起来就比通知好多了，在项目中，代理在控制器值的逆传这块是用得比较多，而且也是比较好用的，做一些简单的回调。比如我在底层界面的功能完成了，需要把一些值传到上一层去，这时候用代理就是比较直接高效了。</span><br><span class="line"> </span><br><span class="line">Notification: 是一种观察者模式，通知的实现比代理要简单得多，而且它是多对多的。通知一般在开发中除了需要监听一些系统的响应，如键盘弹出等，就是用在比如开发模块之间联系不怎么紧密而又需要传值，还有就是多线程之间传值的情况，这时候用通知就比代理来得直接简单了。但使用通知的时候一定要记得在释放对象的时候将通知注销掉，避免出现野指针的现象。</span><br></pre></td></tr></table></figure>
+
+<p> 9、 什么是沙盒（sandbox）？沙盒包含哪些文件，描述每个文件的使用场景。如何获取这些文件的路径？如何获取应用程序包中文件的路径？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">沙盒是指你安装的应用程序只能在该程序所创建的文件系统区域中读取数据，不能去其他地方访问，此区域叫做沙盒.</span><br><span class="line">沙盒路径下的目录：</span><br><span class="line">	Library目录：此目录下主要有两个目录Caches和Preferences：</span><br><span class="line"> 1:Documents：应用中用户数据可以放在这里，iTunes备份和恢复的时候会包括此目录 ，iOS 5.0.1以后版本可以设置某些文件不备份， [fileURL setResourceValue:[NSNumber numberWithBool:YES] forKey:NSURLIsExcludedFromBackupKey error:nil]</span><br><span class="line"> 2:tmp：存放临时文件，iTunes不会备份和恢复此目录，此目录下文件可能会在应用退出后删除 </span><br><span class="line"> 3:Library/Caches：存放缓存文件，iTunes不会备份此目录，此目录下文件不会在应用退出删除</span><br><span class="line">（1）、获取document目录</span><br><span class="line">参数介绍：第一个参数为指向document目录下，第二个参数是在当前程序的沙盒下，第三个参数为是否展开波浪线</span><br><span class="line">NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]</span><br><span class="line">（2）、获取cache目录</span><br><span class="line">NSString *path = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];</span><br><span class="line">（3）、获取tmp目录路径的方法：</span><br><span class="line">NSString *tmpDir = NSTemporaryDirectory();</span><br><span class="line">（4）、通过打印前往文件路径来实现：NSHomeDirectory()。</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="initWithCoder-详解"><a href="#initWithCoder-详解" class="headerlink" title="initWithCoder 详解"></a>initWithCoder 详解</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">大前提是UIViewController有一个UIView.在XCode中 创建一个类和实例化一个类很容易区分,但是在IB(Interface Builder)中有时候就会迷糊.其实也很好区分,孤零零地创建了一个nib文件,没有和其他可被实例化的类有直接或间接关系的时候,这个类或这些类 (一个nib文件俺也可能包含多个类)是没有机会被实例化的,所以这种情况只是通过ib创建了一个类,而没有实例化.真正的实例化还需要通过在Xcode 用代码来读取这个nib文件.知道这两这的区别后这些方法也就容易辨认多了</span><br><span class="line"></span><br><span class="line">viewDidLoad其实没什么可混淆的,无论通过什么途径加载完view后肯定会执行这个方法.</span><br><span class="line"></span><br><span class="line">loadView需要分两种情况.当你通过Xcode实例化一个类的时候就需要自己在controller中实现这个方法.而在IB中实例化就不需要实现它.</span><br><span class="line"></span><br><span class="line">initWithNibName这个方法是在controller的类在IB中创建,通过Xcode实例化controller的时候用的.</span><br><span class="line"></span><br><span class="line">awakeFromNib这个方法是一个类在IB中被实例化是被调用的.看了帖子发现大家都推荐使用viewDidLoad而不要使用 awakeFromNib,应为viewDidLoad会被多次调用,而awakeFromNib只会当从nib文件中unarchive的时候才会被调 用一次.实际测试中发现,当一个类的awakeFromNib被调用的时候,那么这个类的viewDidLoad就不会被调用了,这个感觉很奇怪.</span><br><span class="line"></span><br><span class="line">initWithCoder是一个类在IB中创建但在xocdde中被实例化时被调用的.比如,通过IB创建一个controller的nib文件,然后在xocde中通过initWithNibName来实例化这个controller,那么这个controller的initWithCoder会被调用.</span><br><span class="line"></span><br><span class="line">如果你的对象是UIViewControler的子类，那么你必须调用- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle*)nibBundleOrNil;方法去调用NIB文件初始化自身，即使那没有使用nib文件也会调用这个函数（默认 情况下init方法已经为你的做这件事情了），如果你调用这个方法，并传递的两个参数为空（nil），然后类会调用-loadView去读取一个名字和你 的UIViewController名字相同的nib文件，来初始化自身。如果没有这样的nib文件，你必须调用-setView:来设置一个 self.view。或者重载-loadView 方法</span><br></pre></td></tr></table></figure>
+
+<h2 id="iOS不同版本的差异简单总结"><a href="#iOS不同版本的差异简单总结" class="headerlink" title="iOS不同版本的差异简单总结"></a>iOS不同版本的差异简单总结</h2><ol>
+<li>openurl：方法9.0升级application：openurl：</li>
+<li>remoteNotificationTypes 参数配置接口不同</li>
+<li>网络请求用的NSURLConnection换成了NSURLSessionTask</li>
+<li>uiwebview升级为wkwebview</li>
+<li>uialertview，uiactionsheet等用uialertcontroller替换</li>
+<li>iOS程序在后台运行10分钟编程了3分钟</li>
+</ol>
+<h2 id="iOS性能优化方面："><a href="#iOS性能优化方面：" class="headerlink" title="iOS性能优化方面："></a>iOS性能优化方面：</h2><p>1，能重用的就重用，reuseIdentifier<br>2，使用缩小后的大图片文件<br>3，使用cache</p>
+<h2 id="UIView设置部分圆角"><a href="#UIView设置部分圆角" class="headerlink" title="UIView设置部分圆角"></a>UIView设置部分圆角</h2><figure class="highlight plain"><figcaption><span>rect </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CGSize radio = CGSizeMake(30, 30);//圆角尺寸</span><br><span class="line">UIRectCorner corner = UIRectCornerTopLeft|UIRectCornerTopRight;//这只圆角位置</span><br><span class="line">UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:rect byRoundingCorners:corner cornerRadii:radio];</span><br><span class="line">CAShapeLayer *masklayer = [[CAShapeLayer alloc]init];//创建shapelayer</span><br><span class="line">masklayer.frame = view.bounds;</span><br><span class="line">masklayer.path = path.CGPath;//设置路径</span><br><span class="line">view.layer.mask = masklayer;</span><br></pre></td></tr></table></figure>
+
+<h2 id="图片上绘制文字-写一个UIImage的category"><a href="#图片上绘制文字-写一个UIImage的category" class="headerlink" title="图片上绘制文字 写一个UIImage的category"></a>图片上绘制文字 写一个UIImage的category</h2><figure class="highlight plain"><figcaption><span>(UIImage *)imageWithTitle:(NSString *)title fontSize:(CGFloat)fontSize</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    //画布大小</span><br><span class="line">    CGSize size=CGSizeMake(self.size.width,self.size.height);</span><br><span class="line">    //创建一个基于位图的上下文</span><br><span class="line">    UIGraphicsBeginImageContextWithOptions(size,NO,0.0);//opaque:NO  scale:0.0</span><br><span class="line">    </span><br><span class="line">    [self drawAtPoint:CGPointMake(0.0,0.0)];</span><br><span class="line">    </span><br><span class="line">    //文字居中显示在画布上</span><br><span class="line">    NSMutableParagraphStyle* paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];</span><br><span class="line">    paragraphStyle.lineBreakMode = NSLineBreakByCharWrapping;</span><br><span class="line">    paragraphStyle.alignment=NSTextAlignmentCenter;//文字居中</span><br><span class="line">    </span><br><span class="line">    //计算文字所占的size,文字居中显示在画布上</span><br><span class="line">    CGSize sizeText=[title boundingRectWithSize:self.size options:NSStringDrawingUsesLineFragmentOrigin</span><br><span class="line">                                     attributes:@&#123;NSFontAttributeName:[UIFont systemFontOfSize:fontSize]&#125;context:nil].size;</span><br><span class="line">    CGFloat width = self.size.width;</span><br><span class="line">    CGFloat height = self.size.height;</span><br><span class="line">    </span><br><span class="line">    CGRect rect = CGRectMake((width-sizeText.width)/2, (height-sizeText.height)/2, sizeText.width, sizeText.height);</span><br><span class="line">    //绘制文字</span><br><span class="line">    [title drawInRect:rect withAttributes:@&#123; NSFontAttributeName:[UIFont systemFontOfSize:fontSize],NSForegroundColorAttributeName:[ UIColor whiteColor],NSParagraphStyleAttributeName:paragraphStyle&#125;];</span><br><span class="line">    </span><br><span class="line">    //返回绘制的新图形</span><br><span class="line">    UIImage *newImage= UIGraphicsGetImageFromCurrentImageContext();</span><br><span class="line">    UIGraphicsEndImageContext();</span><br><span class="line">    return newImage;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="UIView的setNeedsLayout-layoutIfNeeded-和-layoutSubviews-方法之间的关系解释"><a href="#UIView的setNeedsLayout-layoutIfNeeded-和-layoutSubviews-方法之间的关系解释" class="headerlink" title="UIView的setNeedsLayout, layoutIfNeeded 和 layoutSubviews 方法之间的关系解释"></a>UIView的setNeedsLayout, layoutIfNeeded 和 layoutSubviews 方法之间的关系解释</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">layoutSubviews总结</span><br><span class="line"></span><br><span class="line">ios layout机制相关方法</span><br><span class="line">- (CGSize)sizeThatFits:(CGSize)size</span><br><span class="line">- (void)sizeToFit</span><br><span class="line">——————-</span><br><span class="line"></span><br><span class="line">- (void)layoutSubviews</span><br><span class="line">- (void)layoutIfNeeded</span><br><span class="line">- (void)setNeedsLayout</span><br><span class="line">——————–</span><br><span class="line"></span><br><span class="line">- (void)setNeedsDisplay</span><br><span class="line">- (void)drawRect</span><br><span class="line"></span><br><span class="line">layoutSubviews在以下情况下会被调用：</span><br><span class="line"></span><br><span class="line">1、当View addSubview及被addSubview都会触发（layoutSubviews）</span><br><span class="line">2、addSubview之后init初始化不会触发，initWithFrame当rect的值不为CGRectZero时会触发会触发</span><br><span class="line">3、改变view的Frame会触发，子视图改变会先触发父类的然后自己的，父视图改变只触发父视图的</span><br><span class="line">4、滚动一个UIScrollView会触发ScrollView的layoutSubviews</span><br><span class="line">5、旋转Screen会触发所有view的layoutSubviews</span><br><span class="line"></span><br><span class="line">-layoutSubviews方法：这个方法，默认没有做任何事情，需要子类进行重写</span><br><span class="line">-setNeedsLayout方法： 标记为需要重新布局，异步调用layoutSubviews刷新布局</span><br><span class="line">-layoutIfNeeded方法：如果有需要刷新的标记，立即调用layoutSubviews进行布局（如果没有标记，不会调用layoutSubviews）</span><br><span class="line"></span><br><span class="line">如果要立即刷新，要先调用[view setNeedsLayout]，把标记设为需要布局，然后马上调用[view layoutIfNeeded]，实现布局</span><br><span class="line">在视图第一次显示之前，标记总是“需要刷新”的，可以直接调用[view layoutIfNeeded]</span><br><span class="line"></span><br><span class="line">重绘</span><br><span class="line"></span><br><span class="line">-drawRect:(CGRect)rect方法：重写此方法，执行重绘任务</span><br><span class="line">-setNeedsDisplay方法：标记为需要重绘，异步调用drawRect</span><br><span class="line">-setNeedsDisplayInRect:(CGRect)invalidRect方法：标记为需要局部重绘</span><br><span class="line"></span><br><span class="line">sizeToFit会自动调用sizeThatFits方法；</span><br><span class="line">sizeToFit不应该在子类中被重写，应该重写sizeThatFits</span><br><span class="line">sizeThatFits传入的参数是receiver当前的size，返回一个适合的size</span><br><span class="line">sizeToFit可以被手动直接调用</span><br><span class="line">sizeToFit和sizeThatFits方法都没有递归，对subviews也不负责，只负责自己</span><br><span class="line"></span><br><span class="line">———————————-</span><br><span class="line"></span><br><span class="line">layoutSubviews对subviews重新布局</span><br><span class="line">layoutSubviews方法调用先于drawRect</span><br><span class="line">setNeedsLayout在receiver标上一个需要被重新布局的标记，在系统runloop的下一个周期自动调用layoutSubviews</span><br><span class="line">layoutIfNeeded方法如其名，UIKit会判断该receiver是否需要layout.根据Apple官方文档,layoutIfNeeded方法应该是这样的</span><br><span class="line"></span><br><span class="line">layoutIfNeeded遍历的不是superview链，应该是subviews链</span><br><span class="line"></span><br><span class="line">drawRect是对receiver的重绘，能获得context</span><br><span class="line"></span><br><span class="line">setNeedDisplay在receiver标上一个需要被重新绘图的标记，在下一个draw周期自动重绘，iphone device的刷新频率是60hz，也就是1/60秒后重绘</span><br></pre></td></tr></table></figure>
+
+<h2 id="整体视图动画"><a href="#整体视图动画" class="headerlink" title="整体视图动画"></a>整体视图动画</h2><p><code>The key path is relative to the layer the receiver is</code><br>UIView的类方法实现的动画，无法实现改变父视图自动改变子视图。masonry控制constrants，CAKeyframeAnimation控制父视图动画，可以同时适配子视图</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CAKeyframeAnimation *popAnimation = [CAKeyframeAnimation animationWithKeyPath:@&quot;transform&quot;];</span><br><span class="line">    popAnimation.duration = 5;</span><br><span class="line">    popAnimation.values = @[[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.1f, 0.1f, 1.0f)],</span><br><span class="line">                            [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.0f, 1.0f, 1.0f)]];</span><br><span class="line">    popAnimation.keyTimes = @[@0.2f, @1.0f];</span><br><span class="line">    popAnimation.timingFunctions = @[[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],</span><br><span class="line">                                     [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],</span><br><span class="line">                                     [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];</span><br><span class="line">    [self.contentView.layer addAnimation:popAnimation forKey:nil];</span><br></pre></td></tr></table></figure>
+
+<p>画个曲线跑一圈</p>
+<figure class="highlight plain"><figcaption><span>(void)drawSpaceCurve</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    UIBezierPath *bezierPath = [[UIBezierPath alloc]init];</span><br><span class="line">    [bezierPath moveToPoint:CGPointMake(0, 150)];</span><br><span class="line">    [bezierPath addCurveToPoint:CGPointMake(300, 150)</span><br><span class="line">                  controlPoint1:CGPointMake(75, 0)</span><br><span class="line">                  controlPoint2:CGPointMake(225, 300)];</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    CAShapeLayer *pathLayer = [CAShapeLayer layer];</span><br><span class="line">    pathLayer.path = [bezierPath CGPath];</span><br><span class="line">    pathLayer.fillColor = [[UIColor blackColor] CGColor];</span><br><span class="line">    pathLayer.strokeColor = [[UIColor redColor]CGColor];</span><br><span class="line">    pathLayer.lineWidth   = 3;</span><br><span class="line">   // pathLayer.contents = (__bridge id)[UIImage imageNamed:@&quot;Ship&quot;].CGImage;</span><br><span class="line">    [self.view.layer addSublayer:pathLayer];</span><br><span class="line">    </span><br><span class="line">    CALayer *layer = [CALayer layer];</span><br><span class="line">    layer.position = CGPointMake(0, 150);</span><br><span class="line">    layer.frame = CGRectMake(0, 0, 64, 64);</span><br><span class="line">    layer.backgroundColor = [[UIColor greenColor] CGColor];</span><br><span class="line">    [self.view.layer addSublayer:layer];</span><br><span class="line">    </span><br><span class="line">    CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];</span><br><span class="line">    animation.keyPath = @&quot;position&quot;;</span><br><span class="line">    animation.duration = 4;</span><br><span class="line">    animation.path = bezierPath.CGPath;</span><br><span class="line">    animation.rotationMode = kCAAnimationRotateAuto;</span><br><span class="line">    [layer addAnimation:animation forKey:nil];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="为什么刷新UI只能在主线程？"><a href="#为什么刷新UI只能在主线程？" class="headerlink" title="为什么刷新UI只能在主线程？"></a>为什么刷新UI只能在主线程？</h2><p>总答：在子线程中无法获取到当前的图形上下文<br>分答：线程同步开销问题，GUI操作非常复杂，子线程也能操作的话就需要锁操作，性能大大降低。<br>子线程操作UI为什么不崩溃而且刷新成功：1，幻像，实际是在主线程刷新UI  2，子线程在创建的时候获取了当前的图形上下文。如按钮事件换标题、换背景图。</p>
+<h2 id="volatile-是什么含义，给出三个不同例子"><a href="#volatile-是什么含义，给出三个不同例子" class="headerlink" title="volatile 是什么含义，给出三个不同例子"></a>volatile 是什么含义，给出三个不同例子</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">含义：当使用volatile声明变量值的时候，系统总是重新从它所在的内存读取数据</span><br><span class="line">            意味着该变量不会被编译器优化，寄存器副本值失效。</span><br><span class="line">例子：1、对全局变量，在不同代码块中异步修改的时候，需要用volatile修饰。</span><br><span class="line">            2、多线程环境下各线程间共享的标志应该加volatile修饰。</span><br><span class="line">            3、存储器映射的硬件寄存器通常也要加voliate，因为每次对它的读写都可能有不同意义。</span><br></pre></td></tr></table></figure>
+
+<h2 id="网络基础知识"><a href="#网络基础知识" class="headerlink" title="网络基础知识"></a>网络基础知识</h2><ol>
+<li>网络由下往上分为物理层、数据链路层、网络层、传输层、会话层、表示层和应用层</li>
+<li>IP属于网络层、TCP&amp;UDP属于传输层、HTTP是应用层、Socket本身并不是协议，而是一个调用接口（API），是对TCP&amp;UDP/IP协议的封装和应用。通过Socket，我们才能使用TCP/IP协议</li>
+<li>TCP是面向链接的可靠传输并且保证数据顺序，三次握手连接，四次握手断开</li>
+<li>UDP非连接的协议不可靠传输并且不保证数据顺序，传输效率高</li>
+<li>短连接：连接-&gt;传输数据-&gt;关闭连接，HTTP是无状态的，SOCKET连接发送后接收完数据马上断开连接。HTTP也可以建立长连接，使用Connection:keep-alive</li>
+<li>长连接：连接-&gt;传输数据-&gt;保持连接 -&gt; 传输数据-&gt; 。。。 -&gt;关闭连接。长连接指建立SOCKET连接后不管是否使用都保持连接</li>
+</ol>
+<h4 id="GET-amp-POST的区别"><a href="#GET-amp-POST的区别" class="headerlink" title="GET &amp; POST的区别"></a>GET &amp; POST的区别</h4><ol>
+<li>Get是用来从服务器上获得数据，而Post是用来向服务器上传递数据</li>
+<li>Get是不安全的，Post的所有操作对用户来说都是不可见的</li>
+<li>Get传输的数据量小，这主要是因为受URL长度限制；而Post可以传输大量的数据，所以在上传文件只能使用Post</li>
+<li>Get限制数据集的值必须为ASCII字符,POST没有此限制</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+<div style="text-align:center;color: #ccc;font-size:14px;">---------------- The End ----------------</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS基础/" rel="tag"># iOS基础</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/25/message/" rel="next" title="消息机制">
+                <i class="fa fa-chevron-left"></i> 消息机制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/25/memary/" rel="prev" title="内存相关">
+                内存相关 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+             <a href="/">
+              <img class="site-author-image" itemprop="image" src="https://tvax3.sinaimg.cn/crop.0.0.284.284.180/923ee8e7ly8g6bq9lmzp3j208607wwev.jpg?Expires" alt="李长鸿">
+             </a>
+            
+              <p class="site-author-name" itemprop="name">李长鸿</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/resources/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#json-to-dic-arr-to-json"><span class="nav-number">1.</span> <span class="nav-text">json to dic , arr to json</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更改iOS状态栏颜色"><span class="nav-number">2.</span> <span class="nav-text">更改iOS状态栏颜色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断view是不是指定视图的子视图"><span class="nav-number">3.</span> <span class="nav-text">判断view是不是指定视图的子视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数字格式化"><span class="nav-number">4.</span> <span class="nav-text">数字格式化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSStirng-编解码"><span class="nav-number">5.</span> <span class="nav-text">NSStirng 编解码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CATransaction使用场景，什么时候触发"><span class="nav-number">6.</span> <span class="nav-text">CATransaction使用场景，什么时候触发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPS"><span class="nav-number">7.</span> <span class="nav-text">HTTPS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能优化-节省电量，流量"><span class="nav-number">8.</span> <span class="nav-text">性能优化  节省电量，流量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简述你对UIView、UIWindow和CALayer的理解"><span class="nav-number">9.</span> <span class="nav-text">简述你对UIView、UIWindow和CALayer的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么delegate属性都是assign而不是strong？为什么block属性都是copy而不是strong？"><span class="nav-number">10.</span> <span class="nav-text">为什么delegate属性都是assign而不是strong？为什么block属性都是copy而不是strong？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简述NotificationCenter、KVC、KVO、Delegate、Block？并说明它们之间的区别"><span class="nav-number">11.</span> <span class="nav-text">简述NotificationCenter、KVC、KVO、Delegate、Block？并说明它们之间的区别?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#initWithCoder-详解"><span class="nav-number">12.</span> <span class="nav-text">initWithCoder 详解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS不同版本的差异简单总结"><span class="nav-number">13.</span> <span class="nav-text">iOS不同版本的差异简单总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS性能优化方面："><span class="nav-number">14.</span> <span class="nav-text">iOS性能优化方面：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIView设置部分圆角"><span class="nav-number">15.</span> <span class="nav-text">UIView设置部分圆角</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图片上绘制文字-写一个UIImage的category"><span class="nav-number">16.</span> <span class="nav-text">图片上绘制文字 写一个UIImage的category</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIView的setNeedsLayout-layoutIfNeeded-和-layoutSubviews-方法之间的关系解释"><span class="nav-number">17.</span> <span class="nav-text">UIView的setNeedsLayout, layoutIfNeeded 和 layoutSubviews 方法之间的关系解释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整体视图动画"><span class="nav-number">18.</span> <span class="nav-text">整体视图动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么刷新UI只能在主线程？"><span class="nav-number">19.</span> <span class="nav-text">为什么刷新UI只能在主线程？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#volatile-是什么含义，给出三个不同例子"><span class="nav-number">20.</span> <span class="nav-text">volatile 是什么含义，给出三个不同例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络基础知识"><span class="nav-number">21.</span> <span class="nav-text">网络基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GET-amp-POST的区别"><span class="nav-number">21.0.1.</span> <span class="nav-text">GET &amp; POST的区别</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李长鸿</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("mk0O1vG1wNWCc394AJ4KwJdW-gzGzoHsz", "nVpOG7jiWd2TMwoXRLlvDrdO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "topCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "topRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

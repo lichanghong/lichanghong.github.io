@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="合伙呀, hehuoya, 李长鸿, 峰云逸飞">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="sqlite的版本升级coredata界面化的可以使用MagicalRecord简单操作，sqlite可以使用FMDB，有FMDBMigrationManager可以简单操作版本升级，提供了两种方式，推荐创建Migration类。另外推荐一种命令行工具sqlite3，mac自带。另一种界面化的：sqlitebrowser。如有其它更好的版本升级及好用的工具，可讨论。最后，   NSString *">
+<meta property="og:type" content="article">
+<meta property="og:title" content="各公司的面试经验">
+<meta property="og:url" content="https://miaohui.gitee.io/blog/2019/08/25/interview/index.html">
+<meta property="og:site_name" content="李长鸿">
+<meta property="og:description" content="sqlite的版本升级coredata界面化的可以使用MagicalRecord简单操作，sqlite可以使用FMDB，有FMDBMigrationManager可以简单操作版本升级，提供了两种方式，推荐创建Migration类。另外推荐一种命令行工具sqlite3，mac自带。另一种界面化的：sqlitebrowser。如有其它更好的版本升级及好用的工具，可讨论。最后，   NSString *">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-02T15:04:30.958Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="各公司的面试经验">
+<meta name="twitter:description" content="sqlite的版本升级coredata界面化的可以使用MagicalRecord简单操作，sqlite可以使用FMDB，有FMDBMigrationManager可以简单操作版本升级，提供了两种方式，推荐创建Migration类。另外推荐一种命令行工具sqlite3，mac自带。另一种界面化的：sqlitebrowser。如有其它更好的版本升级及好用的工具，可讨论。最后，   NSString *">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '6FW5HE4YX0',
+      apiKey: '2da9e7fa78cd975d91c8dd47490308f6',
+      indexName: 'github',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://miaohui.gitee.io/blog/2019/08/25/interview/">
+
+
+
+
+
+  <title>各公司的面试经验 | 李长鸿</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?40ae5a9f5ef5473f5b3d49d8462931ce";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">李长鸿</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Talk is cheap,Show me the girl.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://miaohui.gitee.io/blog/2019/08/25/interview/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李长鸿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.284.284.180/923ee8e7ly8g6bq9lmzp3j208607wwev.jpg?Expires">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李长鸿">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">各公司的面试经验</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-25T18:33:53+08:00">
+                2019-08-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS面试必看/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS面试必看</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/08/25/interview/" class="leancloud_visitors" data-flag-title="各公司的面试经验">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="sqlite的版本升级"><a href="#sqlite的版本升级" class="headerlink" title="sqlite的版本升级"></a>sqlite的版本升级</h2><p>coredata界面化的可以使用MagicalRecord简单操作，sqlite可以使用FMDB，有FMDBMigrationManager可以简单操作版本升级，提供了两种方式，推荐创建Migration类。另外推荐一种命令行工具sqlite3，mac自带。另一种界面化的：sqlitebrowser。如有其它更好的版本升级及好用的工具，可讨论。最后，   NSString *path = [[[NSBundle mainBundle]bundlePath]stringByAppendingPathComponent:@”aa.txt”];<br>[@”test” writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil] 沙盒有权限写入，真机无法写入</p>
+<h2 id="今日头条的面试题"><a href="#今日头条的面试题" class="headerlink" title="今日头条的面试题"></a>今日头条的面试题</h2><h4 id="View上有很多button，也有子view，subview上有button，还有uitableview的cell上也有button，如何写一个方法设置所有button失去响应事件的能力？代码是手写，我当时用响应者琏写的，这是个陷阱，思路完全相反。以下是我事后写的实现方法。"><a href="#View上有很多button，也有子view，subview上有button，还有uitableview的cell上也有button，如何写一个方法设置所有button失去响应事件的能力？代码是手写，我当时用响应者琏写的，这是个陷阱，思路完全相反。以下是我事后写的实现方法。" class="headerlink" title="View上有很多button，也有子view，subview上有button，还有uitableview的cell上也有button，如何写一个方法设置所有button失去响应事件的能力？代码是手写，我当时用响应者琏写的，这是个陷阱，思路完全相反。以下是我事后写的实现方法。"></a>View上有很多button，也有子view，subview上有button，还有uitableview的cell上也有button，如何写一个方法设置所有button失去响应事件的能力？代码是手写，我当时用响应者琏写的，这是个陷阱，思路完全相反。以下是我事后写的实现方法。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">+ (void)disabelActionsInView:(UIView *)view</span><br><span class="line">&#123;</span><br><span class="line">    for (UIView *v in view.subviews) &#123;</span><br><span class="line">        if ([v isMemberOfClass:[UIButton class]] &amp;&amp; v.userInteractionEnabled) &#123;</span><br><span class="line">            UIButton *btn = (UIButton *)v;</span><br><span class="line">            NSLog(@&quot;view  setEnabled  = %@&quot;,btn);</span><br><span class="line">            [btn setUserInteractionEnabled:NO];</span><br><span class="line">        &#125;</span><br><span class="line">        else if(v.userInteractionEnabled &amp;&amp; [v isKindOfClass:[UIResponder class]] &amp;&amp; v.subviews)</span><br><span class="line">        &#123;</span><br><span class="line">            NSLog(@&quot;view  else  = %@&quot;,v);</span><br><span class="line">            [ViewController disabelActionsInView:v];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="对可变数组的count使用kvo监听，kvo使用注意点"><a href="#对可变数组的count使用kvo监听，kvo使用注意点" class="headerlink" title="对可变数组的count使用kvo监听，kvo使用注意点"></a>对可变数组的count使用kvo监听，kvo使用注意点</h4><p>iOS默认不支持对数组的KVO,因为普通方式监听的对象的地址的变化，而数组地址不变，而是里面的值发生了改变,当对同一个keypath进行两次removeObserver时会导致程序crash，这种情况常常出现在父类有一个kvo，父类在dealloc中remove了一次，子类又remove了一次的情况下。<br>目前的代码中context字段都是nil，那能否利用该字段来标识出到底kvo是superClass注册的，还是self注册的？我们可以分别在父类以及本类中定义各自的context字符串，比如在本类中定义context为@”ThisIsMyKVOContextNotSuper”;然后在dealloc中remove observer时指定移除的自身添加的observer。这样iOS就能知道移除的是自己的kvo，而不是父类中的kvo，避免二次remove造成crash。</p>
+<h2 id="ipad使用UIAlertController时，和iphone有点区别，需要加上如下三句才不会崩溃"><a href="#ipad使用UIAlertController时，和iphone有点区别，需要加上如下三句才不会崩溃" class="headerlink" title="ipad使用UIAlertController时，和iphone有点区别，需要加上如下三句才不会崩溃"></a>ipad使用UIAlertController时，和iphone有点区别，需要加上如下三句才不会崩溃</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[alert.popoverPresentationController setPermittedArrowDirections:0];</span><br><span class="line">alert.popoverPresentationController.sourceView=sender;</span><br><span class="line">alert.popoverPresentationController.sourceRect=CGRectMake(CGRectGetMidX(sender.bounds), CGRectGetMidY(sender.bounds),0,0);</span><br></pre></td></tr></table></figure>
+
+<h2 id="陌陌科技面试遇到的问题坑"><a href="#陌陌科技面试遇到的问题坑" class="headerlink" title="陌陌科技面试遇到的问题坑"></a>陌陌科技面试遇到的问题坑</h2><h3 id="viewdidload里面开启4个nstimer对可变数组操作，需要锁吗？用什么锁？"><a href="#viewdidload里面开启4个nstimer对可变数组操作，需要锁吗？用什么锁？" class="headerlink" title="viewdidload里面开启4个nstimer对可变数组操作，需要锁吗？用什么锁？"></a>viewdidload里面开启4个nstimer对可变数组操作，需要锁吗？用什么锁？</h3><p>因为是在主线程同一个运行循环里，所有任务都是顺序执行的，所以不需要加锁<br>那如果是多线程同时对可变数组操作需要加锁吗？你会用什么锁？atomic和其他所的区别<br>这里主要是想问atomic加锁方式，就是对对象的set和get方法进行加锁，而其他的锁都是手动加入到需要锁的地方。</p>
+<p>关于锁：(不加锁的情况下一个元素会很多次的remove)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">NSMutableArray *arr = [NSMutableArray array];</span><br><span class="line">    [arr addObject:@&quot;hehe&quot;];</span><br><span class="line">   // NSLock *lock = [[NSLock alloc]init];</span><br><span class="line"></span><br><span class="line">    for (int i=0; i&lt;50; i++) &#123;</span><br><span class="line">        NSString *str = [NSString stringWithFormat:@&quot;xixi%d&quot;,i];</span><br><span class="line">        dispatch_async(dispatch_queue_create([str UTF8String], 0), ^&#123;</span><br><span class="line">           // [lock lock];</span><br><span class="line">            if (arr.count&gt;0) &#123;</span><br><span class="line">                NSLog(@&quot;arr count &gt; 0  %@&quot;,arr);</span><br><span class="line">                [arr removeLastObject];</span><br><span class="line">            &#125;</span><br><span class="line">          //  [lock unlock];</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">     @synchronized(self)&#123;&#125;也能实现加锁,dispatch_semaphore_t同步也可以</span><br></pre></td></tr></table></figure>
+
+<p>同一个url在sdwebimage里发送几次请求<br>uiview的父视图有pan手势，uiview拖动的时候会调用父视图的手势吗<br>retain assign Timer会导致循环引用吗？为什么</p>
+<h2 id="作业盒子面试的坑"><a href="#作业盒子面试的坑" class="headerlink" title="作业盒子面试的坑"></a>作业盒子面试的坑</h2><h3 id="frame和bounds的区别，主要问view经过旋转或transform之后分别多大，frame改变之后bounds大小也会变，但是transform改变大小之后frame会变，bounds还是原来的大小"><a href="#frame和bounds的区别，主要问view经过旋转或transform之后分别多大，frame改变之后bounds大小也会变，但是transform改变大小之后frame会变，bounds还是原来的大小" class="headerlink" title="frame和bounds的区别，主要问view经过旋转或transform之后分别多大，frame改变之后bounds大小也会变，但是transform改变大小之后frame会变，bounds还是原来的大小"></a>frame和bounds的区别，主要问view经过旋转或transform之后分别多大，frame改变之后bounds大小也会变，但是transform改变大小之后frame会变，bounds还是原来的大小</h3><h3 id="readonly声明的属性如何在-m类中修改？使用属性生成的成员变量即可直接复制修改，readonly针对的是get、set方法只读"><a href="#readonly声明的属性如何在-m类中修改？使用属性生成的成员变量即可直接复制修改，readonly针对的是get、set方法只读" class="headerlink" title="readonly声明的属性如何在.m类中修改？使用属性生成的成员变量即可直接复制修改，readonly针对的是get、set方法只读"></a>readonly声明的属性如何在.m类中修改？使用属性生成的成员变量即可直接复制修改，readonly针对的是get、set方法只读</h3><p>离屏渲染</p>
+<h3 id="uiview-pangesture"><a href="#uiview-pangesture" class="headerlink" title="uiview pangesture"></a>uiview pangesture</h3><p>父view加上pan手势，子view覆盖其上，拖动子view会调用pan手势</p>
+<p>隐藏cer</p>
+<h3 id="关于const"><a href="#关于const" class="headerlink" title="关于const"></a>关于const</h3><p>static nsstring const* name<br>static const nsstring* name<br>static nsstring *const name</p>
+<p>const关键字放在类型或变量名之前等价的<br>const int n=5; //same as below<br>int const m=10<br>const int a; int const a; 这两个写法是等同的，表示a是一个int常量。<br>const int <em>a; 表示a是一个指针，可以任意指向int常量或者int变量，它总是把它所指向的目标当作一个int常量。也可以写成int const</em> a;含义相同。<br>int * const a; 表示a是一个指针常量，初始化的时候必须固定指向一个int变量，之后就不能再指向别的地方了。<br>int const * a const;这个写法没有，倒是可以写成int const * const a;表示a是一个指针常量，初始化的时候必须固定指向一个int常量或者int变量，之后就不能再指向别的地方了，它总是把它所指向的目标当作一个int常量。也可以写成const int* const a;含义相同。</p>
+<h1 id="2019年最新面试题："><a href="#2019年最新面试题：" class="headerlink" title="2019年最新面试题："></a>2019年最新面试题：</h1><p>1、</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> #define max(a,b)  (a&gt;b?a:b)</span><br><span class="line">  int a=1;</span><br><span class="line">        NSLog(@&quot;%f&quot;,max(a++,1.5));</span><br><span class="line">        NSLog(@&quot;%d&quot;,a);</span><br><span class="line">输出结果是什么？</span><br></pre></td></tr></table></figure>
+
+<p>2、<br>@interface NSObject (NSObject)</p>
+<ul>
+<li>(void)test;</li>
+</ul>
+<ul>
+<li>(void)test1;<br>@end<br>@implementation NSObject  (NSObject)</li>
+<li>(void)test<br>{<br>  NSLog(@”aaaa”);<br>}</li>
+</ul>
+<ul>
+<li>(void)test1<br>{<br>  NSLog(@”bbbb”);<br>}<br>@end<br>以下输出结果： 3，4崩溃<br>[NSObject test1];<br>  [Person test1];<br> [[[NSObject alloc]init] test];<br> [[[Person alloc]init] test];<br>NSObject元类对象是自己，所以NSObject能够直接调用类方法和实例方法<br>3、</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+<div style="text-align:center;color: #ccc;font-size:14px;">---------------- The End ----------------</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/25/SDWebImage/" rel="next" title="SDWebImage">
+                <i class="fa fa-chevron-left"></i> SDWebImage
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/25/architecture/" rel="prev" title="架构设计">
+                架构设计 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+             <a href="/">
+              <img class="site-author-image" itemprop="image" src="https://tvax3.sinaimg.cn/crop.0.0.284.284.180/923ee8e7ly8g6bq9lmzp3j208607wwev.jpg?Expires" alt="李长鸿">
+             </a>
+            
+              <p class="site-author-name" itemprop="name">李长鸿</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/resources/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#sqlite的版本升级"><span class="nav-number">1.</span> <span class="nav-text">sqlite的版本升级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#今日头条的面试题"><span class="nav-number">2.</span> <span class="nav-text">今日头条的面试题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#View上有很多button，也有子view，subview上有button，还有uitableview的cell上也有button，如何写一个方法设置所有button失去响应事件的能力？代码是手写，我当时用响应者琏写的，这是个陷阱，思路完全相反。以下是我事后写的实现方法。"><span class="nav-number">2.0.1.</span> <span class="nav-text">View上有很多button，也有子view，subview上有button，还有uitableview的cell上也有button，如何写一个方法设置所有button失去响应事件的能力？代码是手写，我当时用响应者琏写的，这是个陷阱，思路完全相反。以下是我事后写的实现方法。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对可变数组的count使用kvo监听，kvo使用注意点"><span class="nav-number">2.0.2.</span> <span class="nav-text">对可变数组的count使用kvo监听，kvo使用注意点</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#ipad使用UIAlertController时，和iphone有点区别，需要加上如下三句才不会崩溃"><span class="nav-number">3.</span> <span class="nav-text">ipad使用UIAlertController时，和iphone有点区别，需要加上如下三句才不会崩溃</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#陌陌科技面试遇到的问题坑"><span class="nav-number">4.</span> <span class="nav-text">陌陌科技面试遇到的问题坑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#viewdidload里面开启4个nstimer对可变数组操作，需要锁吗？用什么锁？"><span class="nav-number">4.1.</span> <span class="nav-text">viewdidload里面开启4个nstimer对可变数组操作，需要锁吗？用什么锁？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作业盒子面试的坑"><span class="nav-number">5.</span> <span class="nav-text">作业盒子面试的坑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#frame和bounds的区别，主要问view经过旋转或transform之后分别多大，frame改变之后bounds大小也会变，但是transform改变大小之后frame会变，bounds还是原来的大小"><span class="nav-number">5.1.</span> <span class="nav-text">frame和bounds的区别，主要问view经过旋转或transform之后分别多大，frame改变之后bounds大小也会变，但是transform改变大小之后frame会变，bounds还是原来的大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#readonly声明的属性如何在-m类中修改？使用属性生成的成员变量即可直接复制修改，readonly针对的是get、set方法只读"><span class="nav-number">5.2.</span> <span class="nav-text">readonly声明的属性如何在.m类中修改？使用属性生成的成员变量即可直接复制修改，readonly针对的是get、set方法只读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#uiview-pangesture"><span class="nav-number">5.3.</span> <span class="nav-text">uiview pangesture</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于const"><span class="nav-number">5.4.</span> <span class="nav-text">关于const</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2019年最新面试题："><span class="nav-number"></span> <span class="nav-text">2019年最新面试题：</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李长鸿</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("mk0O1vG1wNWCc394AJ4KwJdW-gzGzoHsz", "nVpOG7jiWd2TMwoXRLlvDrdO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "topCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "topRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

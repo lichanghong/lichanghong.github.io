@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="合伙呀, hehuoya, 李长鸿, 峰云逸飞">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="对线程处理有哪几种？优缺点，在什么场景使用 pthread C 跨平台通用，手动管理线程生命周期，使用难度大  NSThread OC 面向对象使用简单，需自己管理生命周期线程同步锁  GCD C 替代NSThread 等线程技术，可以充分利用线程多核，线程生命周期自动管理  NSOperation OC基于GCD，比GCD多一些简单使用功能，面向对象，自动管理生命周期。 题目：有五个异步线程，如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对线程处理有哪几种？优缺点，在什么场景使用">
+<meta property="og:url" content="https://miaohui.gitee.io/blog/2019/08/25/thread/index.html">
+<meta property="og:site_name" content="李长鸿">
+<meta property="og:description" content="对线程处理有哪几种？优缺点，在什么场景使用 pthread C 跨平台通用，手动管理线程生命周期，使用难度大  NSThread OC 面向对象使用简单，需自己管理生命周期线程同步锁  GCD C 替代NSThread 等线程技术，可以充分利用线程多核，线程生命周期自动管理  NSOperation OC基于GCD，比GCD多一些简单使用功能，面向对象，自动管理生命周期。 题目：有五个异步线程，如">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-02T15:04:30.959Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="对线程处理有哪几种？优缺点，在什么场景使用">
+<meta name="twitter:description" content="对线程处理有哪几种？优缺点，在什么场景使用 pthread C 跨平台通用，手动管理线程生命周期，使用难度大  NSThread OC 面向对象使用简单，需自己管理生命周期线程同步锁  GCD C 替代NSThread 等线程技术，可以充分利用线程多核，线程生命周期自动管理  NSOperation OC基于GCD，比GCD多一些简单使用功能，面向对象，自动管理生命周期。 题目：有五个异步线程，如">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '6FW5HE4YX0',
+      apiKey: '2da9e7fa78cd975d91c8dd47490308f6',
+      indexName: 'github',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://miaohui.gitee.io/blog/2019/08/25/thread/">
+
+
+
+
+
+  <title>对线程处理有哪几种？优缺点，在什么场景使用 | 李长鸿</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?40ae5a9f5ef5473f5b3d49d8462931ce";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">李长鸿</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Talk is cheap,Show me the girl.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://miaohui.gitee.io/blog/2019/08/25/thread/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李长鸿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.284.284.180/923ee8e7ly8g6bq9lmzp3j208607wwev.jpg?Expires">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李长鸿">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">对线程处理有哪几种？优缺点，在什么场景使用</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-25T18:21:38+08:00">
+                2019-08-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS面试必看/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS面试必看</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/08/25/thread/" class="leancloud_visitors" data-flag-title="对线程处理有哪几种？优缺点，在什么场景使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="对线程处理有哪几种？优缺点，在什么场景使用"><a href="#对线程处理有哪几种？优缺点，在什么场景使用" class="headerlink" title="对线程处理有哪几种？优缺点，在什么场景使用"></a>对线程处理有哪几种？优缺点，在什么场景使用</h2><ul>
+<li><p>pthread C 跨平台通用，手动管理线程生命周期，使用难度大</p>
+</li>
+<li><p>NSThread OC 面向对象使用简单，需自己管理生命周期线程同步锁</p>
+</li>
+<li><p>GCD C 替代NSThread 等线程技术，可以充分利用线程多核，线程生命周期自动管理</p>
+</li>
+<li><p>NSOperation OC基于GCD，比GCD多一些简单使用功能，面向对象，自动管理生命周期。</p>
+<p>题目：有五个异步线程，如何在处理完之后再处理后来的任务？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">1，CFRunLoopRun();CFRunLoopStop(runloop); 只能在主线程处理异步线程，不符合要求</span><br><span class="line">2，dispatch_group_async,dispatch_group_notify 处理同步任务的时候可以，异步任务不行</span><br><span class="line">3，dispatch_group_enter，dispatch_group_leave，dispatch_group_notify 达到要求</span><br><span class="line">4，dispatch_barrier_sync 达到要求 </span><br><span class="line">5，NSOperationQueue中NSOperation addDependency ，和2同 </span><br><span class="line">6，dispatch_semaphore_create，dispatch_semaphore_signal，dispatch_semaphore_wait 达到要求。</span><br><span class="line">wait:Decrement the counting semaphore. If the resulting value is less than zero, </span><br><span class="line">this function waits for a signal to occur before returning.</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">进程：是系统进行资源分配和调度的基本单位</span><br><span class="line">线程：是程序执行流的最小单位</span><br></pre></td></tr></table></figure>
+
+<h2 id="iOS中的线程死锁和循环引用问题"><a href="#iOS中的线程死锁和循环引用问题" class="headerlink" title="iOS中的线程死锁和循环引用问题"></a>iOS中的线程死锁和循环引用问题</h2><ul>
+<li><code>dispatch_queue_t queue = dispatch_queue_create(&quot;test&quot;, nil);</code>这行代码中，第二个参数为nil值，相当与值为DISPATCH_QUEUE_SERIAL，即为串行的。<br>如果把值改成DISPATCH_QUEUE_CONCURRENT，即为并行的，就不会导致两个同步线程死锁.或者使用dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),dispatch_get_global_queue是并行队列。主线程其实就是在一个串行队列里的.</li>
+<li>我们要做的就是将任务放到队列里执行，GCD会自动将队列中的任务按先进先出的方式取出并交给对应线程执行。注意任务的取出是按照先进先出的方式，这也是队列的特性，但是取出后的执行顺序则不一定，</li>
+<li>有两种队列：串行队列和并行队列。串行队列：同步执行，尽可能在当前线程执行，以优化性能；并行队列：可由多个线程异步执行，但任务的取出还是FIFO的.</li>
+<li>另外系统提供了两种队列：全局队列和主队列。</li>
+<li>全局队列属于并行队列，只不过已由系统创建的没有名字，且在全局可见（可用）。获取全局队列：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/* 取得全局队列</span><br><span class="line"> 第一个参数：线程优先级,设为默认即可，个人习惯写0，等同于默认</span><br><span class="line"> 第二个参数：标记参数，目前没有用，一般传入0</span><br><span class="line"> */</span><br><span class="line">serialQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>主队列属于串行队列，也由系统创建，只不过运行在主线程（UI线程）。获取主队列：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 获取主队列</span><br><span class="line">serialQ = dispatch_get_main_queue();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关于内存：queue属于一个对象，也是占用内存的，也会使用引用计数，当向queue添加一个任务时就会将这个queue retain一下，引用计数+1，直到所有任务都完成内存才会释放。（我们在声明一个queue属性时要用strong)。</p>
+</li>
+<li><p>执行方式——2种(同步执行和异步执行)</p>
+<ul>
+<li>同步执行：不会开启新的线程，在当前线程执行(绝大部分情况如此)；同步执行的话，不会对block进行copy.</li>
+<li>异步执行：gcd管理的线程池中有空闲线程就会从队列中取出任务执行，会开启线程。</li>
+</ul>
+</li>
+<li><p>下面为实现同步和异步的函数，函数功能为：将任务添加到队列并执行。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">将任务添加到队列并执行。</span><br><span class="line">/* 同步执行</span><br><span class="line"> 第一个参数：执行任务的队列：串行、并行、全局、主队列</span><br><span class="line"> 第二个参数：block任务</span><br><span class="line"> */</span><br><span class="line">void dispatch_sync(dispatch_queue_t queue, dispatch_block_t block);</span><br><span class="line">有一种情况要用这个dispatch_sync，就是要保证线程安全的情况。dispatch_sync会加锁。</span><br><span class="line">比如说这个：</span><br><span class="line">- (NSArray *)photos</span><br><span class="line">&#123;</span><br><span class="line">	__block NSArray *array;</span><br><span class="line">	dispatch_sync(self.concurrentPhotoQueue, ^&#123;</span><br><span class="line">		array = [NSArray arrayWithArray:_photoArray];</span><br><span class="line">	&#125;);</span><br><span class="line">	return array;</span><br><span class="line">&#125;</span><br><span class="line">_photoArray是NSMutableArray类型的，是非线程安全的。故要加一个锁，防止出现问题</span><br><span class="line">dispatchsync，在底层是对queue进行了加锁</span><br><span class="line">// 异步执行</span><br><span class="line">void dispatch_async(dispatch_queue_t queue, dispatch_blo</span><br></pre></td></tr></table></figure>
+
+<p>注意：默认情况下，新线程都没有开启runloop，所以当block任务完成后，线程都会自动被回收，假设我们想在新开的线程中使用NSTimer，就必须开启runloop，可以使用[[NSRunLoop currentRunLoop] run]开启当前线程，这是就要自己管理线程的回收等工作。</p>
+<ul>
+<li>另外还有两个方法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">*  另外还有两个方法</span><br><span class="line">dispatch_barrier_sync(dispatch_queue_t queue, dispatch_block_t block);</span><br><span class="line">dispatch_barrier_async(dispatch_queue_t queue, dispatch_block_t block);</span><br><span class="line">加了一个barrier，意义在于：当开始处理队列中barrier的block时，必须处理完之后，才能处理其它的block</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>四种情况：串行队列同步执行、串行队列异步执行、并行队列同步执行、并行队列异步执行</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.	串行队列，同步执行-----串行队列意味着顺序执行，同步执行意味着不开启线程（在当前线程执行）</span><br><span class="line">2.	串行队列,异步执行-----串行队列意味着任务顺序执行，异步执行说明要开线程, （如果开多个线程的话，不能保证串行队列顺序执行，所以只开一个线程）</span><br><span class="line">3.	并行队列,异步执行-----并行队列意味着执行顺序不确定，异步执行意味着会开启线程，而并行队列又允许不按顺序执行，所以系统为了提高性能会开启多个线程，来队列取任务（队列中任务取出仍然是顺序取出的，只是线程执行无序）。</span><br><span class="line">4.	并行队列,同步执行-----同步执行意味着不开线程,则肯定是顺序执行</span><br><span class="line">5.	死锁-----程序执行不出来(死锁) ；</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>死锁举例</p>
+<ol>
+<li><p>主队列死锁<br><code>1. 主队列死锁
+ 主队列，如果主线程正在执行代码，就不调度任务；同步执行：一直执行第一个任务直到结</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (void)mainThreadDeadLockTest &#123;</span><br><span class="line">    NSLog(@&quot;begin&quot;);</span><br><span class="line">    dispatch_sync(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">        // 发生死锁下面的代码不会执行</span><br><span class="line">        NSLog(@&quot;middle&quot;);</span><br><span class="line">    &#125;);</span><br><span class="line">    // 发生死锁下面的代码不会执行，当然函数也不会返回，后果也最为严重</span><br><span class="line">    NSLog(@&quot;end&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+</li>
+</ul>
+<ol start="2">
+<li>在其它线程死锁，这种不会影响主线程<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">  - (void)deadLockTest &#123;</span><br><span class="line">    // 其它线程的死锁</span><br><span class="line">    dispatch_queue_t serialQueue = dispatch_queue_create(&quot;serial_queue&quot;, DISPATCH_QUEUE_SERIAL);</span><br><span class="line">    dispatch_async(serialQueue, ^&#123;</span><br><span class="line">        // 串行队列block1</span><br><span class="line">        NSLog(@&quot;begin&quot;);</span><br><span class="line">        dispatch_sync(serialQueue, ^&#123;</span><br><span class="line">            // 串行队列block2 发生死锁，下面的代码不会执行</span><br><span class="line">            NSLog(@&quot;middle&quot;);</span><br><span class="line">        &#125;);</span><br><span class="line">        // 不会打印</span><br><span class="line">        NSLog(@&quot;end&quot;);</span><br><span class="line">    &#125;);</span><br><span class="line">    // 函数会返回，不影响主线程</span><br><span class="line">    NSLog(@&quot;return&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<ul>
+<li><p>常用举例</p>
+<ol>
+<li><p>线程间通讯<br><code>为了提高用户体验，我们一般在其他线程（非主线程）下载图片或其它网络资源，下载完成后我们要更新UI，而UI更新必须在主线程执</code></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 同步执行，会阻塞直到下面block中的代码执行完毕</span><br><span class="line">dispatch_sync(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">    // 主线程，UI更新</span><br><span class="line">&#125;);</span><br><span class="line">// 异步执行</span><br><span class="line">dispatch_async(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">    // 主线程，UI更新</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+</li>
+</ul>
+<ol start="2">
+<li><p>信号量的使用也属于线程间通讯<br>  <code>在网络访问中，NSURLSession类都是异步的(找了很久没有找到同步的方法)，而有时我们希望能够像NSURLConnection一样可以同步访问，即在网络block调用完成之后做一些操作。那我们可以使用dispatch的信号量来解决：</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 用于线程间通讯，下面是等待一个网络完成</span><br><span class="line">- (void)dispatchSemaphore &#123;</span><br><span class="line">    NSString *urlString = [@&quot;https://www.baidu.com&quot; stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];</span><br><span class="line">    // 设置缓存策略为每次都从网络加载 超时时间30秒</span><br><span class="line">    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:30];</span><br><span class="line">    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);</span><br><span class="line">    [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) &#123;</span><br><span class="line">        // 处理完成之后，发送信号量</span><br><span class="line">        NSLog(@&quot;正在处理...&quot;);</span><br><span class="line">        dispatch_semaphore_signal(semaphore);</span><br><span class="line">    &#125;] resume];</span><br><span class="line">    // 等待网络处理完成</span><br><span class="line">    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);</span><br><span class="line">    NSLog(@&quot;处理完成！&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>在上面的举例中dispatch_semaphore_signal的调用必须是在另一个线程调用，因为当前线程已经dispatch_semaphore_wait阻塞。另外，dispatch_semaphore_wait最好不要在主线程调用</code></p>
+<ol start="3">
+<li><p>全局队列，实现并发  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dispatch_async(dispatch_get_global_queue(0, 0), ^&#123;</span><br><span class="line">	    // 要执行的代码</span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li>关于Dispatch对象内存管理问题<br><code>根据上面的代码，可以看出有关dispatch的对象并不是OC对象，那么，用不用像对待Core Foundation框架的对象一样，使用retain/release来管理呢？答案是不用的！
+如果是ARC环境，我们无需管理，会像对待OC对象一样自动内存管理。
+如果是MRC环境，不是使用retain/release，而是使用dispatch_retain/dispatch_release来管理。</code></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+<div style="text-align:center;color: #ccc;font-size:14px;">---------------- The End ----------------</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/25/Runloop/" rel="next" title="Runloop是什么？使用Runloop的目的是什么？注意内容">
+                <i class="fa fa-chevron-left"></i> Runloop是什么？使用Runloop的目的是什么？注意内容
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/25/load/" rel="prev" title="load & initialize">
+                load & initialize <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+             <a href="/">
+              <img class="site-author-image" itemprop="image" src="https://tvax3.sinaimg.cn/crop.0.0.284.284.180/923ee8e7ly8g6bq9lmzp3j208607wwev.jpg?Expires" alt="李长鸿">
+             </a>
+            
+              <p class="site-author-name" itemprop="name">李长鸿</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/resources/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#对线程处理有哪几种？优缺点，在什么场景使用"><span class="nav-number">1.</span> <span class="nav-text">对线程处理有哪几种？优缺点，在什么场景使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS中的线程死锁和循环引用问题"><span class="nav-number">2.</span> <span class="nav-text">iOS中的线程死锁和循环引用问题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李长鸿</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("mk0O1vG1wNWCc394AJ4KwJdW-gzGzoHsz", "nVpOG7jiWd2TMwoXRLlvDrdO");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "topCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "topRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
