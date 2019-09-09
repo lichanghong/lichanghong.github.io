@@ -318,7 +318,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://miaohui.gitee.io/blog/2019/08/25/architecture/">
+    <link itemprop="mainEntityOfPage" href="https://miaohui.gitee.io/blog/2019/09/07/strong-weak-self/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="李长鸿">
@@ -337,7 +337,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/25/architecture/" itemprop="url">架构设计</a></h2>
+                <a class="post-title-link" href="/2019/09/07/strong-weak-self/" itemprop="url">strong-weak-self</a></h2>
         
 
         <div class="post-meta">
@@ -349,8 +349,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-25T18:34:51+08:00">
-                2019-08-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-07T09:45:46+08:00">
+                2019-09-07
               </time>
             
 
@@ -360,28 +360,6 @@
           </span>
 
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS面试必看/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS面试必看</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -389,7 +367,7 @@
 
           
           
-             <span id="/2019/08/25/architecture/" class="leancloud_visitors" data-flag-title="架构设计">
+             <span id="/2019/09/07/strong-weak-self/" class="leancloud_visitors" data-flag-title="strong-weak-self">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -412,7 +390,7 @@
                 </span>
                 
                 <span title="字数统计">
-                  1.4k字
+                  468字
                 </span>
               
 
@@ -426,7 +404,7 @@
                 </span>
                 
                 <span title="阅读时长">
-                  4分钟
+                  1分钟
                 </span>
               
             </div>
@@ -448,10 +426,14 @@
 
       
         
-          <h3 id="架构设计"><a href="#架构设计" class="headerlink" title="架构设计"></a>架构设计</h3><p>1，接口设计（安全机制、接口数据、接口版本）<br>大部分App的接口都采用RESTful架构，RESTFul最重要的一个设计原则就是，</p>
+          
+          解决循环引用和为了延迟释放必用strongSelf &amp; weakSelf循环引用1对象A-&gt;对象B，同时B-&gt;A 互相持有而循环引用
+
+原因：对A发送release消息发现持有B，则会对B对象发送release消息并等待B释放；当B收到release之后发现持有A，则对A发送re
+          ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/08/25/architecture/#more" rel="contents">
+            <a class="btn" href="/2019/09/07/strong-weak-self/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>

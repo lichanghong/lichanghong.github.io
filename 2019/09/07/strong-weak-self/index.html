@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="Talk is cheap,Show me the girl.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="所有标签">
-<meta property="og:url" content="https://miaohui.gitee.io/blog/tags/index.html">
+<meta name="description" content="解决循环引用和为了延迟释放必用strongSelf &amp;amp; weakSelf循环引用1对象A-&amp;gt;对象B，同时B-&amp;gt;A 互相持有而循环引用  原因：对A发送release消息发现持有B，则会对B对象发送release消息并等待B释放；当B收到release之后发现持有A，则对A发送release消息并等待A释放，此时相互等待而内存泄漏无法释放解决方法大家都知道，有一条线是weak的就">
+<meta property="og:type" content="article">
+<meta property="og:title" content="strong-weak-self">
+<meta property="og:url" content="https://miaohui.gitee.io/blog/2019/09/07/strong-weak-self/index.html">
 <meta property="og:site_name" content="李长鸿">
-<meta property="og:description" content="Talk is cheap,Show me the girl.">
+<meta property="og:description" content="解决循环引用和为了延迟释放必用strongSelf &amp;amp; weakSelf循环引用1对象A-&amp;gt;对象B，同时B-&amp;gt;A 互相持有而循环引用  原因：对A发送release消息发现持有B，则会对B对象发送release消息并等待B释放；当B收到release之后发现持有A，则对A发送release消息并等待A释放，此时相互等待而内存泄漏无法释放解决方法大家都知道，有一条线是weak的就">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-02T15:04:30.961Z">
+<meta property="og:updated_time" content="2019-09-07T03:35:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="所有标签">
-<meta name="twitter:description" content="Talk is cheap,Show me the girl.">
+<meta name="twitter:title" content="strong-weak-self">
+<meta name="twitter:description" content="解决循环引用和为了延迟释放必用strongSelf &amp;amp; weakSelf循环引用1对象A-&amp;gt;对象B，同时B-&amp;gt;A 互相持有而循环引用  原因：对A发送release消息发现持有B，则会对B对象发送release消息并等待B释放；当B收到release之后发现持有A，则对A发送release消息并等待A释放，此时相互等待而内存泄漏无法释放解决方法大家都知道，有一条线是weak的就">
 
 
 
@@ -127,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="https://miaohui.gitee.io/blog/tags/">
+  <link rel="canonical" href="https://miaohui.gitee.io/blog/2019/09/07/strong-weak-self/">
 
 
 
 
 
-  <title>所有标签 | 李长鸿</title>
+  <title>strong-weak-self | 李长鸿</title>
   
 
 
@@ -306,40 +306,198 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://miaohui.gitee.io/blog/2019/09/07/strong-weak-self/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李长鸿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.284.284.180/923ee8e7ly8g6bq9lmzp3j208607wwev.jpg?Expires">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="李长鸿">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h2 class="post-title" itemprop="name headline">所有标签</h2>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                目前共计 2 个标签
+          <h2 class="post-title" itemprop="name headline">strong-weak-self</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-07T09:45:46+08:00">
+                2019-09-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/09/07/strong-weak-self/" class="leancloud_visitors" data-flag-title="strong-weak-self">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                <span title="字数统计">
+                  468字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                <span title="阅读时长">
+                  1分钟
+                </span>
+              
             </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/iOS基础/" style="font-size: 12px; color: #ccc">iOS基础</a> <a href="/tags/iOS架构/" style="font-size: 12px; color: #ccc">iOS架构</a>
-            </div>
-          </div>
-        
-      </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h2 id="解决循环引用和为了延迟释放必用strongSelf-amp-weakSelf"><a href="#解决循环引用和为了延迟释放必用strongSelf-amp-weakSelf" class="headerlink" title="解决循环引用和为了延迟释放必用strongSelf &amp; weakSelf"></a>解决循环引用和为了延迟释放必用strongSelf &amp; weakSelf</h2><h4 id="循环引用"><a href="#循环引用" class="headerlink" title="循环引用"></a>循环引用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对象A-&gt;对象B，同时B-&gt;A 互相持有而循环引用</span><br></pre></td></tr></table></figure>
+
+<p>原因：对A发送release消息发现持有B，则会对B对象发送release消息并等待B释放；当B收到release之后发现持有A，则对A发送release消息并等待A释放，此时相互等待而内存泄漏无法释放<br>解决方法大家都知道，有一条线是weak的就可以解决循环引用</p>
+<h4 id="用weakself可以解决循环引用-但是会不会有个别情况会有问题呢？且看下方代码："><a href="#用weakself可以解决循环引用-但是会不会有个别情况会有问题呢？且看下方代码：" class="headerlink" title="用weakself可以解决循环引用,但是会不会有个别情况会有问题呢？且看下方代码："></a>用weakself可以解决循环引用,但是会不会有个别情况会有问题呢？且看下方代码：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Person类</span><br><span class="line">-(void)run</span><br><span class="line">&#123;</span><br><span class="line">    __weak typeof(self)wself = self;</span><br><span class="line">    self.block = ^&#123;</span><br><span class="line">        __strong typeof(self) strongSelf = wself;</span><br><span class="line">         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^&#123;</span><br><span class="line">            [wself log];</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;;</span><br><span class="line">    self.block();</span><br><span class="line">&#125;</span><br><span class="line">- (void)log &#123;</span><br><span class="line">    NSLog(@&quot;run person log.....&quot;);</span><br><span class="line">&#125;</span><br><span class="line">ViewController类里调用：</span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [[Person new] run];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上代码很显然循环引用了，self-&gt;block-&gt;self<br>把[self log] 改为[wself log] 解决了循环引用，但是log消息并未执行，因为[wself log]任务添加到任务队列的时候因为为nil；如何保证log消息执行完再释放呢？<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__strong typeof(self) strongSelf = wself;</span><br></pre></td></tr></table></figure></p>
+<p>wself改为strongSelf，log消息即可执行，原因：外部的wself是为了打破循环引用的环，内部是strongself是让对象retain+1，当外部要释放对象时，因为引用计数不为0，所以释放不了；由于strongself是在栈上分配的内存，一旦任务执行完，栈内存释放，引用计数变为0，内存得以释放。<br>2，block会对他内部所有的强指针进行强引用，这里的对象在外部引用计数已经减掉了，唯一的一个指向指针就是strongSelf，所以block-&gt;strongSelf-&gt;self  当block执行完引用计数-1，则self引用计数为0，因此释放</p>
+
       
     </div>
     
     
     
+<div style="text-align:center;color: #ccc;font-size:14px;">---------------- The End ----------------</div>
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/25/interview/" rel="next" title="各公司的面试经验">
+                <i class="fa fa-chevron-left"></i> 各公司的面试经验
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -377,8 +535,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -442,6 +609,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#解决循环引用和为了延迟释放必用strongSelf-amp-weakSelf"><span class="nav-number">1.</span> <span class="nav-text">解决循环引用和为了延迟释放必用strongSelf &amp; weakSelf</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#循环引用"><span class="nav-number">1.0.1.</span> <span class="nav-text">循环引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用weakself可以解决循环引用-但是会不会有个别情况会有问题呢？且看下方代码："><span class="nav-number">1.0.2.</span> <span class="nav-text">用weakself可以解决循环引用,但是会不会有个别情况会有问题呢？且看下方代码：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
