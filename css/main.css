@@ -1922,7 +1922,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #30ff45;
+  background: #c29a29;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2967,7 +2967,7 @@ hr {
   right: -100%;
 }
 .site-subtitle {
-  display: none;
+  display: float;
 }
 .site-nav-toggle {
   position: static;
@@ -3179,4 +3179,11 @@ hr {
     width: auto;
     text-align: center;
   }
+}
+.shici {
+  font-size: 15px;
+  text-align: center;
+  font-weight: 300;
+  color: #444;
+  font-style: italic;
 }
