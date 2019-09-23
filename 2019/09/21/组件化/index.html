@@ -67,7 +67,7 @@
 
 
 
-  <meta name="keywords" content="合伙, hehuoya, 李长鸿, 峰云逸飞">
+  <meta name="keywords" content="工作经验,">
 
 
 
@@ -78,18 +78,23 @@
 
 
 
-<meta name="description" content="什么是事件响应链？用户与iphone屏幕互动时发生了什么？事件如何传递的？ The responder chain is a linked series of responder’s object to whitch an event or action message is applied. 响应者链是一系列相关的响应者对象，一个事件或操作信息 iOS中的事件可以分为3大类型：触屏/加速/远程控">
-<meta name="keywords" content="hehuoya，峰云逸飞，iOS学习">
+<meta name="description" content="简单来说分为四层： ET 》 T 》 M 》 B   转载请注明出处, 原文链接：hehuoya.com  app架构采用大中型app必用架构方式优点：路由架构、模块灵活搭配、插件化管理、易于扩展、易于协作、模块间0耦合 缺点：会比无路由架构方式多一些开发量 本人认为如果优点适合长久发展，能够适用于大中小企业的架构才是最优方案，有工作量上的额外开销是值得的。 本人参考了大量组件化实践方案，基本上">
+<meta name="keywords" content="工作经验">
 <meta property="og:type" content="article">
-<meta property="og:title" content="事件响应链">
-<meta property="og:url" content="https://miaohui.gitee.io/blog/2019/08/25/事件响应链/index.html">
+<meta property="og:title" content="iOS组件化 - 路由架构从0到1实战">
+<meta property="og:url" content="https://miaohui.gitee.io/blog/2019/09/21/组件化/index.html">
 <meta property="og:site_name" content="李长鸿">
-<meta property="og:description" content="什么是事件响应链？用户与iphone屏幕互动时发生了什么？事件如何传递的？ The responder chain is a linked series of responder’s object to whitch an event or action message is applied. 响应者链是一系列相关的响应者对象，一个事件或操作信息 iOS中的事件可以分为3大类型：触屏/加速/远程控">
+<meta property="og:description" content="简单来说分为四层： ET 》 T 》 M 》 B   转载请注明出处, 原文链接：hehuoya.com  app架构采用大中型app必用架构方式优点：路由架构、模块灵活搭配、插件化管理、易于扩展、易于协作、模块间0耦合 缺点：会比无路由架构方式多一些开发量 本人认为如果优点适合长久发展，能够适用于大中小企业的架构才是最优方案，有工作量上的额外开销是值得的。 本人参考了大量组件化实践方案，基本上">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-21T13:12:39.099Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6797613-5f1bdca56bcc0987.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6797613-8c91f81d1126f3d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6797613-0d31e3a1c7381582.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6797613-2f6d6e21af6083f5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-09-21T14:49:12.980Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="事件响应链">
-<meta name="twitter:description" content="什么是事件响应链？用户与iphone屏幕互动时发生了什么？事件如何传递的？ The responder chain is a linked series of responder’s object to whitch an event or action message is applied. 响应者链是一系列相关的响应者对象，一个事件或操作信息 iOS中的事件可以分为3大类型：触屏/加速/远程控">
+<meta name="twitter:title" content="iOS组件化 - 路由架构从0到1实战">
+<meta name="twitter:description" content="简单来说分为四层： ET 》 T 》 M 》 B   转载请注明出处, 原文链接：hehuoya.com  app架构采用大中型app必用架构方式优点：路由架构、模块灵活搭配、插件化管理、易于扩展、易于协作、模块间0耦合 缺点：会比无路由架构方式多一些开发量 本人认为如果优点适合长久发展，能够适用于大中小企业的架构才是最优方案，有工作量上的额外开销是值得的。 本人参考了大量组件化实践方案，基本上">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/6797613-5f1bdca56bcc0987.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -129,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="https://miaohui.gitee.io/blog/2019/08/25/事件响应链/">
+  <link rel="canonical" href="https://miaohui.gitee.io/blog/2019/09/21/组件化/">
 
 
 
 
 
-  <title>事件响应链 | 李长鸿</title>
+  <title>iOS组件化 - 路由架构从0到1实战 | 李长鸿</title>
   
 
 
@@ -320,7 +325,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://miaohui.gitee.io/blog/2019/08/25/事件响应链/">
+    <link itemprop="mainEntityOfPage" href="https://miaohui.gitee.io/blog/2019/09/21/组件化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="李长鸿">
@@ -337,7 +342,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">事件响应链</h2>
+          <h2 class="post-title" itemprop="name headline">iOS组件化 - 路由架构从0到1实战</h2>
         
 
         <div class="post-meta">
@@ -355,8 +360,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-25T18:02:08+08:00">
-                2019-08-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-21T22:41:20+08:00">
+                2019-09-21
               </time>
             
 
@@ -378,8 +383,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS面试必看/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS面试必看</span>
+                  <a href="/categories/工作经验/" itemprop="url" rel="index">
+                    <span itemprop="name">工作经验</span>
                   </a>
                 </span>
 
@@ -395,7 +400,7 @@
 
           
           
-             <span id="/2019/08/25/事件响应链/" class="leancloud_visitors" data-flag-title="事件响应链">
+             <span id="/2019/09/21/组件化/" class="leancloud_visitors" data-flag-title="iOS组件化 - 路由架构从0到1实战">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -418,7 +423,7 @@
                 </span>
                 
                 <span title="字数统计">
-                  713字
+                  2.7k字
                 </span>
               
 
@@ -432,7 +437,7 @@
                 </span>
                 
                 <span title="阅读时长">
-                  2分钟
+                  9分钟
                 </span>
               
             </div>
@@ -453,21 +458,95 @@
       
 
       
-        <h2 id="什么是事件响应链？用户与iphone屏幕互动时发生了什么？事件如何传递的？"><a href="#什么是事件响应链？用户与iphone屏幕互动时发生了什么？事件如何传递的？" class="headerlink" title="什么是事件响应链？用户与iphone屏幕互动时发生了什么？事件如何传递的？"></a>什么是事件响应链？用户与iphone屏幕互动时发生了什么？事件如何传递的？</h2><ul>
-<li>The responder chain is a linked series of responder’s object to whitch an event or action message is applied.</li>
-<li>响应者链是一系列相关的响应者对象，一个事件或操作信息</li>
-<li>iOS中的事件可以分为3大类型：触屏/加速/远程控</li>
-<li>“单击”这一行为，操作系统把包含这些点击事件的信息包装成UITouch和UIEvent形式的实例，然后找到当前运行的程序，逐级寻找能够响应这个事件的对象，直到没有响应者响应。这一寻找的过程，被称作事件的响应链</li>
-<li>详细：<br>起始阶段：cpu睡眠状态等待事件发生，手指触摸屏幕<br>系统响应阶段：屏幕硬件感应到输入，事件传递给IOKit驱动，IOKit.framework封装整个触摸事件为IOHIDEvent对象，并通过IPC将事件转发给SpringBoard.app<br>桌面响应阶段：SpringBoard.app主线程Runloop收到IOKit.framework转发来的消息苏醒，并触发对应Mach Port的Source1回调<strong>IOHIDEventSystemClientQueueCallback()。<br>如果SpringBoard.app监测到有App在前台，SpringBoard.app通过mach port(IPC进程间通信)转发给app，如果SpringBoard.app监测到监测无前台App，则SpringBoard.app进入App内部响应阶段的第二段，记触发Source0回调。<br>app内部响应阶段：<br>—-&gt; 前台App主线程Runloop收到SpringBoard.app转发来的消息苏醒，并触发对应Mach Port的Source1回调</strong>IOHIDEventSystemClientQueueCallback()。 —-&gt; Source1回调内部触发Source0回调<em>_UIApplicationHandleEventQueue() —-&gt; Soucre0回调内部，封装IOHIDEvent为UIEvent —-&gt; Soucre0回调内部调用UIApplication的sendEvent:方法，将UIEvent传给UIWindow —-&gt; 平时开发熟悉的触摸事件响应链从这开始了 —-&gt; 通过递归调用UIView层级的hitTest(</em>:with:)，结合point(inside:with:)找到UIEvent中每一个UITouch所属的UIView（其实是想找到离触摸事件点最近的那个UIView）。这个过程是从UIView层级的最顶层往最底层递归查询，但这不是UIResponder响应链，事件响应是在UIEvent中每一个UITouch所属的UIView都确定之后方才开始。<br>但需要注意，以下三种情况UIView的hitTest(_:with:)不会被调用，这直接导致以下三种情况的UIView及其子UIView不接收任何触摸事件：<ol>
-<li>userInteractionEnabled = NO</li>
-<li>hidden = YES</li>
-<li>alpha = 0.0~0.01之间</li>
-</ol>
-</li>
-</ul>
-<p>note：<br>SpringBoard.app就是iOS的系统桌面，当触摸事件发生时，也只有负责管理桌面的SpringBoard.app才知道如何正确的响应。因为触摸发生时，有可能用户正在桌面翻页找App，也有可能正处于在微信中刷朋友圈。</p>
-<p>有个图片记录了详细流程：<a href="http://qingmo.me/images/uitouchflow.png" target="_blank" rel="noopener">http://qingmo.me/images/uitouchflow.png</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">圆形点击区域：</span><br><span class="line">- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event</span><br><span class="line">&#123;</span><br><span class="line">const CGFloat halfWidth = 100;</span><br><span class="line">CGFloat xOffset = point.x - 100;</span><br><span class="line">CGFloat yOffset = point.y - 100;</span><br><span class="line">CGFloat radius = sqrt(xOffset * xOffset + yOffset * yOffset);</span><br><span class="line">return radius &lt;= halfWidth;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p> 简单来说分为四层： ET 》 T 》 M 》 B </p>
+<p> 转载请注明出处, 原文链接：hehuoya.com </p>
+<h2 id="app架构采用大中型app必用架构方式"><a href="#app架构采用大中型app必用架构方式" class="headerlink" title="app架构采用大中型app必用架构方式"></a>app架构采用大中型app必用架构方式</h2><p>优点：路由架构、模块灵活搭配、插件化管理、易于扩展、易于协作、模块间0耦合</p>
+<p>缺点：会比无路由架构方式多一些开发量</p>
+<p>本人认为如果优点适合长久发展，能够适用于大中小企业的架构才是最优方案，有工作量上的额外开销是值得的。</p>
+<p>本人参考了大量组件化实践方案，基本上都处理理论状态，并且大多数demo与理论相违背，有许多细节问题没有做任何说明。很多人说小项目和一两个人的项目不用搞组件化，工作量确实会变大，但是我不同意那种说法，你现在不去组建化，等到项目逐渐变大，业务如山的压过来，时间久了，你想抽离出来根本没时间和精力，本人认为：一本万利的事情就是一开始就组件化搞起来。组件化做完之后能避免后期维护的一系列头疼问题。</p>
+<p>比如有人说全局替换图片会额外消耗许多时间，是不是架构有问题？关于这个疑问，我想平衡一下优缺点，其中原因不言而喻</p>
+<h3 id="iOS路由架构一共三种模型，1，蘑菇街模式-2，CTMediator模式-3，protocol模式-经过对这三种模式的大量研究实践，我们最终采用的是CTMediator"><a href="#iOS路由架构一共三种模型，1，蘑菇街模式-2，CTMediator模式-3，protocol模式-经过对这三种模式的大量研究实践，我们最终采用的是CTMediator" class="headerlink" title="iOS路由架构一共三种模型，1，蘑菇街模式 2，CTMediator模式 3，protocol模式   经过对这三种模式的大量研究实践，我们最终采用的是CTMediator"></a>iOS路由架构一共三种模型，1，蘑菇街模式 2，CTMediator模式 3，protocol模式   经过对这三种模式的大量研究实践，我们最终采用的是CTMediator</h3><p>下面进入正题，NO BB，show me code！</p>
+<h4 id="经过长期的实践，四层架构基本上可以算得上是万能架构了，业务层-》中间层-》基础层-》第三方私有化。这四层自上而下，同层之间不可以相互引用。"><a href="#经过长期的实践，四层架构基本上可以算得上是万能架构了，业务层-》中间层-》基础层-》第三方私有化。这四层自上而下，同层之间不可以相互引用。" class="headerlink" title="经过长期的实践，四层架构基本上可以算得上是万能架构了，业务层-》中间层-》基础层-》第三方私有化。这四层自上而下，同层之间不可以相互引用。"></a>经过长期的实践，四层架构基本上可以算得上是万能架构了，业务层-》中间层-》基础层-》第三方私有化。这四层自上而下，同层之间不可以相互引用。</h4><p>模块管理我们采用cocoapod管理，许多第三方来自github，对于githud中的有些资源依赖会去谷歌下载，导致不翻墙就无法调试、无法打包，而且第三方如果被作者删除，会导致项目出现事故，因此，第三方私有化是重中之重，是基础必备，因此首先所有第三方及其依赖私有化是第一步。</p>
+<p>私有化第三方上层是基础层，在项目中不直接使用第三方代码，而是通过基础层加一层封装，比如说我们用的网络AFN，如果有一天AFN废弃了也不维护了，我们不用到各个模块去全部修改一遍，只需要到基础层的网络模块进行修改，而对外接口是不变的，修改的是接口的具体实现部分，外部可以0修改，完全无感知。另外，基础层包含许多基础工具，后面会详细介绍。</p>
+<p>中间层是上服务于业务层，下使用基础层，这部分已经和项目的具体业务有关系了，这里最多的是基础UI组件的封装和业务公共功能部分的封装</p>
+<p>业务层就是首页、视频页、详情页、登录页等，项目具体实现</p>
+<p>如果有天我们需要另外开发一款app，第三方私有和基础层都是可以完全复用照搬，因为他们和业务完全没关系</p>
+<p>以上，架构骨架四层结构介绍完了。</p>
+<p>CTMediator路由架构：</p>
+<p>本路由在网上有大量文章，其优点不言而喻，采用target-action方式，内部实现采用oc特效runtime及方法查找特性</p>
+<p>业务层各个业务模块之间完全0耦合，相互之间不可以相互引用，避免难解难分，他们之间的跳转采用路由模块层控制，直到运行时才能发现模块是否存在</p>
+<h2 id="实战项目的具体架构实现（四层的实现）："><a href="#实战项目的具体架构实现（四层的实现）：" class="headerlink" title="实战项目的具体架构实现（四层的实现）："></a>实战项目的具体架构实现（四层的实现）：</h2><p>1，T开头的都是第三方ThirdLibrary,凡用到的开元sdk都私有化<br><img src="https://upload-images.jianshu.io/upload_images/6797613-5f1bdca56bcc0987.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>2，ET开头的都是基础层，比如ETBugly和TBugly是相对应的，Tbugly是第三方的直接私有化，没有代码上的任何变动，方便后期升级。ETBugly则是对Tbugly的封装，以及中青看点极速版的key和注册等操作都会封装到里面。并且采用监听启动通知的方式注册，外部模块无需手动引用。下面是所有用到的ET，下面会有详细解释。<br><img src="https://upload-images.jianshu.io/upload_images/6797613-8c91f81d1126f3d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>ETBugly ：Bugly统计分析及卡崩上报</p>
+<p>ETColor： 项目中的颜色封装</p>
+<p>ETDevice：对布局的坐标和大小的便捷操作方法的封装，以及设备机型的判断和机型宽高的封装</p>
+<p>ETEntity： 对网络返回的数据进行模型解析，自动解析为Model类，外部所有的网络接口都解析为Entity实体类</p>
+<p>ETFont：对项目中的pingfangSC等字体的封装，简单易用的工具类</p>
+<p>ETGesture：各种视图添加手势需要写大量代码，这个基础类可以一句代码调用实现监听和回调，提高开发效率</p>
+<p>ETijkPlayer：是对bilibili视频播放器的封装，只有播放功能，与UI无关</p>
+<p>ETImage：图片类的封装，比如读取图片清除缓存、模块里封装的图片读取方法、图片缩放、webp图片的显示等</p>
+<p>ETKit：一些公用基础系统组件的基础UI组件的封装，比如UITextView没有占位文字，这里将占位文字封装到UITextView中等</p>
+<p>ETNetwork：网络库的封装，只封装网络请求接口，具体的url和域名等在中间层出来</p>
+<p>ETPageView：这个是UI组件，如首页的左右切换页面，就是使用的这个控件</p>
+<p>ETSafe：安全类，对于字典、字符串、数组等的存取做安全保护，避免崩溃，以及对方法找不到等崩溃做拦截处理，即使程序应该崩溃也会拦截跳过</p>
+<p>ETShare：分享类，对微信分享、qq分享等功能做封装，UI无关</p>
+<p>ETSingleton：单例类管理，项目中的单例类只需要继承自这个类，就无需手写单例创建的大量代码，并且实现了按需释放</p>
+<p>ETString：字符串工具类，比如MD5、base64加密、URL截取、正则方法封装、判断空等</p>
+<p>ETSuper：项目中的父类，弹窗、Cell、视图等，对于Cell公用的注册方法和获取标志的方法都封装到父类里，达到重用的目的</p>
+<p>ETToast：Toast的封装</p>
+<p>ETUserDefaults：本地化操作的方便方法，例如用户信息、系统信息等，直接使用这个类就可以方便的本地化</p>
+<p>3，M开头的都是中间层，多是与业务直接相关的基础组件</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/6797613-0d31e3a1c7381582.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>MAlertView：</p>
+<p>详情页的评论弹窗，在首页和视频页都会使用，所以独立封装出来可以直接复用，即便以后有新模块需要评论功能，可以直接拿来使用。</p>
+<p>分享功能的弹窗，在许多模块里都有分享需求，分享弹窗UI封装之后，在需要使用的地方可以直接引入即可</p>
+<p>MCommenNet：</p>
+<p>一些公用的网络请求，比如收藏、评论、分享信息获取，他们这些接口与模块无关，在很多模块里都可以复用</p>
+<p>MData：</p>
+<p>本地化的具体类，比如用户信息类，继承自上面提到的ETUserDefaults，这里是与业务有关的，还有前置接口的配置信息类</p>
+<p>MDevice：</p>
+<p>appName，系统请求的serverDeviceID、以及deviceUDID等，和具体业务相关的设备信息都在这个类里</p>
+<p>MExceptionView：</p>
+<p>一些异常处理的页面封装，比如网络飞了提示，加载中等</p>
+<p>MHomeCells：</p>
+<p>首页的单元UI样式，App中的样式在多个模块里都是一样的，因此独立出UI单元供多个业务模块共用</p>
+<p>MijkPlayer：</p>
+<p>播放器UI界面的具体封装，直接使用下层的ETijkPlayer播放器功能类，封装为一个和具体业务相关的播放器</p>
+<p>MLogin：</p>
+<p>微信登录相关逻辑和网络请求，后期如果有其他登录，也会放到这里</p>
+<p>MNavBar：</p>
+<p>项目中的导航条，所有导航条的样式都封装到这里</p>
+<p>MNet：</p>
+<p>网络请求参数的加密逻辑、URI、前置接口的请求等，都是和具体业务逻辑相关的</p>
+<p>MRefresh：</p>
+<p>极速版特有的刷新控件，网络加载样式都在这里封装</p>
+<p>MScrollBar：</p>
+<p>项目栏目的滚动条，项目中有俩滚动条，不排除以后会有其他的甚至样式的变动，这个模块就是专门为滚动条准备的</p>
+<p>MSuper：</p>
+<p>和具体业务相关的父类，比如控制器、视图、导航等，如果有埋点等逻辑可以直接父类处理，将会直接写到这里，与业务直接相关</p>
+<p>MToolBar：</p>
+<p>工具条，首页详情和视频详情底部的工具条封装，具体业务相关</p>
+<p>4，业务模块</p>
+<p>KDChannel：项目滚动条的筛选模块</p>
+<p>KDCommentList：评论列表模块</p>
+<p>KDInspector：“工具待完善”</p>
+<p>KDLoginVC：登录模块，手机登录、微信登录等逻辑</p>
+<p>KDMineVC：我的模块</p>
+<p>KDOneViewController：首页模块</p>
+<p>KDRankingVC：排行榜模块</p>
+<p>KDSearchViewController：搜索模块</p>
+<p>KDTabBarController：底部tab模块，综合管理首页、视频页、排行榜、我的</p>
+<p>KDVideoDetailVC：视频详情模块</p>
+<p>KDVideoVC：视频模块</p>
+<p>KDWebDetailVC：网络详情模块，凡是H5的页面，都用这个模块</p>
+<p>KDRoot：根模块，直接控制KDTabBarController，并且前置接口等所有项目相关的全局业务都放这里</p>
+<p>最后一个独立模块：KDApp</p>
+<p>kdapp：项目空壳模块，配置应用图标，应用名和id等，直接使用KDRoot组装成完整app功能，此模块也是最终app打包用到的项目</p>
+<p>以上所有的ET、M、KD模块，都是可以独立运行的项目，可以独立调试和测试！这正是组件化的精华所在</p>
+<p>以上业务间相互跳转的路由是模块控制，如下：<br><img src="https://upload-images.jianshu.io/upload_images/6797613-2f6d6e21af6083f5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>这里的Module和某一个KD有直接关系，当跳转的时候就可以让另一个模块直接调用Module，但是另一个模块对Module里的具体KD是不知道的，因此实现了完全0耦合，具体可以参考CTMediator的实现。一两句也说不完。</p>
+<p>以上，极速版项目架构及逻辑结构介绍完毕，有建议或意见欢迎留言</p>
+
       
     </div>
     
@@ -482,6 +561,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/工作经验/" rel="tag"># 工作经验</a>
+          
+        </div>
       
 
       
@@ -507,15 +592,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/09/21/algorithm/" rel="next" title="面试必须要熟记于心的简单算法">
+                <i class="fa fa-chevron-left"></i> 面试必须要熟记于心的简单算法
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/08/25/Runloop/" rel="prev" title="Runloop是什么？使用Runloop的目的是什么？注意内容">
-                Runloop是什么？使用Runloop的目的是什么？注意内容 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -672,7 +757,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是事件响应链？用户与iphone屏幕互动时发生了什么？事件如何传递的？"><span class="nav-number">1.</span> <span class="nav-text">什么是事件响应链？用户与iphone屏幕互动时发生了什么？事件如何传递的？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#app架构采用大中型app必用架构方式"><span class="nav-number">1.</span> <span class="nav-text">app架构采用大中型app必用架构方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#iOS路由架构一共三种模型，1，蘑菇街模式-2，CTMediator模式-3，protocol模式-经过对这三种模式的大量研究实践，我们最终采用的是CTMediator"><span class="nav-number">1.1.</span> <span class="nav-text">iOS路由架构一共三种模型，1，蘑菇街模式 2，CTMediator模式 3，protocol模式   经过对这三种模式的大量研究实践，我们最终采用的是CTMediator</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#经过长期的实践，四层架构基本上可以算得上是万能架构了，业务层-》中间层-》基础层-》第三方私有化。这四层自上而下，同层之间不可以相互引用。"><span class="nav-number">1.1.1.</span> <span class="nav-text">经过长期的实践，四层架构基本上可以算得上是万能架构了，业务层-》中间层-》基础层-》第三方私有化。这四层自上而下，同层之间不可以相互引用。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实战项目的具体架构实现（四层的实现）："><span class="nav-number">2.</span> <span class="nav-text">实战项目的具体架构实现（四层的实现）：</span></a></li></ol></div>
             
 
           </div>
