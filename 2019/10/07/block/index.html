@@ -67,7 +67,7 @@
 
 
 
-  <meta name="keywords" content="合伙, hehuoya，iOS学习，iOS面试大全，iOS面经">
+  <meta name="keywords" content="iOS block疑难解答,合伙呀，hehuoya.com">
 
 
 
@@ -78,17 +78,18 @@
 
 
 
-<meta name="description" content="合伙，合伙人，iOS学习，iOS面试大全，iOS面经">
-<meta name="keywords" content="合伙，合伙人，iOS学习，iOS面试大全，iOS面经，bash shell,python,c语言">
-<meta property="og:type" content="website">
-<meta property="og:title" content="iOS工作经验">
-<meta property="og:url" content="https://hehuoya.com/tags/iOS面试/index.html">
+<meta name="description" content="1，为什么需要加__block ARC环境下，一旦Block赋值就会触发copy，block就会copy到堆上，Block也是NSMallocBlock。ARC环境下也是存在NSStackBlock的时候，这种情况下，block就在栈上。ARC环境下，Block捕获外部对象变量，是都会copy一份的，地址都不同。只不过带有block修饰符的变量会被捕获到Block内部持有。MRC环境下，只有cop">
+<meta name="keywords" content="iOS block疑难解答,合伙呀，hehuoya.com">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS block疑难解答">
+<meta property="og:url" content="https://hehuoya.com/2019/10/07/block/index.html">
 <meta property="og:site_name" content="iOS工作经验">
-<meta property="og:description" content="合伙，合伙人，iOS学习，iOS面试大全，iOS面经">
+<meta property="og:description" content="1，为什么需要加__block ARC环境下，一旦Block赋值就会触发copy，block就会copy到堆上，Block也是NSMallocBlock。ARC环境下也是存在NSStackBlock的时候，这种情况下，block就在栈上。ARC环境下，Block捕获外部对象变量，是都会copy一份的，地址都不同。只不过带有block修饰符的变量会被捕获到Block内部持有。MRC环境下，只有cop">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-07T14:03:29.271Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS工作经验">
-<meta name="twitter:description" content="合伙，合伙人，iOS学习，iOS面试大全，iOS面经">
+<meta name="twitter:title" content="iOS block疑难解答">
+<meta name="twitter:description" content="1，为什么需要加__block ARC环境下，一旦Block赋值就会触发copy，block就会copy到堆上，Block也是NSMallocBlock。ARC环境下也是存在NSStackBlock的时候，这种情况下，block就在栈上。ARC环境下，Block捕获外部对象变量，是都会copy一份的，地址都不同。只不过带有block修饰符的变量会被捕获到Block内部持有。MRC环境下，只有cop">
 
 
 
@@ -130,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="https://hehuoya.com/tags/iOS面试/">
+  <link rel="canonical" href="https://hehuoya.com/2019/10/07/block/">
 
 
 
 
 
-  <title>标签: iOS面试 | iOS工作经验</title>
+  <title>iOS block疑难解答 | iOS工作经验</title>
   
 
 
@@ -165,7 +166,7 @@
     
   
 
-  <div class="container sidebar-position-right ">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -307,52 +308,231 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>iOS面试<small>标签</small>
-        </h2>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hehuoya.com/2019/10/07/block/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李长鸿">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://tvax3.sinaimg.cn/crop.0.0.284.284.180/923ee8e7ly8g6bq9lmzp3j208607wwev.jpg?Expires">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iOS工作经验">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/09/21/algorithm/" itemprop="url">
-              
-                <span itemprop="name">面试必须要熟记于心的简单算法</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">iOS block疑难解答</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-21T21:15:43+08:00" content="2019-09-21">
-          09-21
-        </time>
-      </div>
+        <div class="post-meta">
+        
+          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-07T21:17:50+08:00">
+                2019-10-07
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS面试必看/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS面试必看</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/10/07/block/" class="leancloud_visitors" data-flag-title="iOS block疑难解答">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                <span title="字数统计">
+                  620字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                <span title="阅读时长">
+                  2分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>1，为什么需要加__block</p>
+<p>ARC环境下，一旦Block赋值就会触发copy，<strong>block就会copy到堆上，Block也是</strong>NSMallocBlock。ARC环境下也是存在<strong>NSStackBlock的时候，这种情况下，</strong>block就在栈上。ARC环境下，Block捕获外部对象变量，是都会copy一份的，地址都不同。只不过带有<strong>block修饰符的变量会被捕获到Block内部持有。<br>MRC环境下，只有copy，</strong>block才会被复制到堆上，否则，<strong>block一直都在栈上，block也只是</strong>NSStackBlock，这个时候__forwarding指针就只指向自己了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc, const char * argv[])</span><br><span class="line">&#123; __block id block_obj = [[NSObject alloc]init];</span><br><span class="line">id obj = [[NSObject alloc]init];</span><br><span class="line">NSLog(@&quot;block_obj = [%@ , %p] , obj = [%@ , %p]&quot;,block_obj , &amp;block_obj , obj , &amp;obj);</span><br><span class="line">void (^myBlock)(void) = ^&#123;</span><br><span class="line">NSLog(@&quot;***Block中****block_obj = [%@ , %p] , obj = [%@ , %p]&quot;,block_obj , &amp;block_obj , obj , &amp;obj);</span><br><span class="line">&#125;;</span><br><span class="line">myBlock();</span><br><span class="line">return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于非对象的变量来说，<br>自动变量的值，被copy进了Block，不带<strong>block的自动变量只能在里面被访问，并不能改变值。<br>带</strong>block的自动变量 和 静态变量 就是直接地址访问。所以在Block里面可以直接改变变量的值。<br>而剩下的静态全局变量，函数参数，也是可以在直接在Block中改变变量值的，但是他们并没有变成Block结构体<strong>main_block_impl_0的成员变量，因为他们的作用域大，所以可以直接更改他们的值。 静态全局变量，全局变量，函数参数他们并不会被Block持有，也就是说不会增加retainCount值。<br>对于对象来说 在MRC环境下，</strong>block根本不会对指针所指向的对象执行copy操作，而只是把指针进行的复制。<br>而在ARC环境下，对于声明为<strong>block的外部对象，在block内部会进行retain，以至于在block环境内能安全的引用外部对象。<br>当block内部访问了对象类型的auto变量时:<br>1:如果block是在栈上,将不会对auto变量产生强引用(不管是 MRC 或者 ARC)<br>2:如果block是在堆上,就说明block进行过copy操作,进行copy操作的block会自动调用block内部的</strong>main_block_copy_0函数,<strong>main_block_copy_0函数内部会根据auto变量的修饰符形成相应的强引用(retain)或者弱引用.<br>3:当block销毁时,block会自动调用内部的dispose函数,dispose函数会自动调用内部的</strong>main_block_dispose_0释放引用的auto变量.<br>  oc转c++源码查看：<br> xcrun -sdk iphoneos clang -arch arm64 -rewrite-objc -fobjc-arc -fobjc-runtime=ios-8.0.0 MYBlock.m </p>
 
       
     </div>
+    
+    
+    
+    
 
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS面试必看/" rel="tag"># iOS面试必看</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/30/cocoapod各种问题的解决方案/" rel="next" title="cocoapod各种问题的解决方案">
+                <i class="fa fa-chevron-left"></i> cocoapod各种问题的解决方案
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/07/jenkins/" rel="prev" title="iOS jenkins从0快速配置">
+                iOS jenkins从0快速配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -360,6 +540,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -621,6 +808,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

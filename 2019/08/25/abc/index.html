@@ -67,7 +67,7 @@
 
 
 
-  <meta name="keywords" content="iOS牛人成长日记">
+  <meta name="keywords" content="iOS牛人成长日记，iOS 用正则表达式解析HTML等文件,得到所有文本获得网页内容">
 
 
 
@@ -79,16 +79,16 @@
 
 
 <meta name="description" content="json to dic , arr to json123456json to dicNSData *data = [@&amp;quot;json str&amp;quot; dataUsingEncoding:NSUTF8StringEncoding];[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContain">
-<meta name="keywords" content="iOS牛人成长日记">
+<meta name="keywords" content="iOS牛人成长日记，iOS 用正则表达式解析HTML等文件,得到所有文本获得网页内容">
 <meta property="og:type" content="article">
-<meta property="og:title" content="简单基础">
+<meta property="og:title" content="iOS简单基础">
 <meta property="og:url" content="https://hehuoya.com/2019/08/25/abc/index.html">
 <meta property="og:site_name" content="iOS工作经验">
 <meta property="og:description" content="json to dic , arr to json123456json to dicNSData *data = [@&amp;quot;json str&amp;quot; dataUsingEncoding:NSUTF8StringEncoding];[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContain">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-27T13:32:35.642Z">
+<meta property="og:updated_time" content="2019-10-07T13:45:02.640Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="简单基础">
+<meta name="twitter:title" content="iOS简单基础">
 <meta name="twitter:description" content="json to dic , arr to json123456json to dicNSData *data = [@&amp;quot;json str&amp;quot; dataUsingEncoding:NSUTF8StringEncoding];[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContain">
 
 
@@ -137,7 +137,7 @@
 
 
 
-  <title>简单基础 | iOS工作经验</title>
+  <title>iOS简单基础 | iOS工作经验</title>
   
 
 
@@ -339,7 +339,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">简单基础</h2>
+          <h2 class="post-title" itemprop="name headline">iOS简单基础</h2>
         
 
         <div class="post-meta">
@@ -393,7 +393,7 @@
 
           
           
-             <span id="/2019/08/25/abc/" class="leancloud_visitors" data-flag-title="简单基础">
+             <span id="/2019/08/25/abc/" class="leancloud_visitors" data-flag-title="iOS简单基础">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -416,7 +416,7 @@
                 </span>
                 
                 <span title="字数统计">
-                  4.3k字
+                  4.5k字
                 </span>
               
 
@@ -430,7 +430,7 @@
                 </span>
                 
                 <span title="阅读时长">
-                  16分钟
+                  17分钟
                 </span>
               
             </div>
@@ -524,6 +524,16 @@
 <li>Get传输的数据量小，这主要是因为受URL长度限制；而Post可以传输大量的数据，所以在上传文件只能使用Post</li>
 <li>Get限制数据集的值必须为ASCII字符,POST没有此限制</li>
 </ol>
+<h2 id="IOS-用正则表达式解析HTML等文件-得到所有文本获得网页内容"><a href="#IOS-用正则表达式解析HTML等文件-得到所有文本获得网页内容" class="headerlink" title="IOS 用正则表达式解析HTML等文件,得到所有文本获得网页内容"></a>IOS 用正则表达式解析HTML等文件,得到所有文本获得网页内容</h2><p>获得网页内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NSURL *url=[NSURL URLWithString:@&quot;http://121.199.34.52/wordpress/?json=core.get_post_content&amp;post_id=8764&amp;post_type=post&quot;];</span><br><span class="line">     NSDictionary * dic=[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:url] options:0 error:Nil];</span><br><span class="line"> </span><br><span class="line">  NSString *content=[dic objectForKey:@&quot;content&quot;];</span><br></pre></td></tr></table></figure>
+
+<p>正则表达式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">NSRegularExpression *regularExpretion=[NSRegularExpression regularExpressionWithPattern:@&quot;&lt;[^&gt;]*&gt;|\n&quot;</span><br><span class="line">                                                                                 options:0</span><br><span class="line">                                                                                   error:nil];</span><br><span class="line"> </span><br><span class="line"> content=[regularExpretion stringByReplacingMatchesInString:content options:NSMatchingReportProgress range:NSMakeRange(0, content.length) withTemplate:@&quot;-&quot;];//替换所有html和换行匹配元素为&quot;-&quot;</span><br><span class="line"> </span><br><span class="line"> regularExpretion=[NSRegularExpression regularExpressionWithPattern:@&quot;-&#123;1,&#125;&quot; options:0 error:nil] ;</span><br><span class="line">  content=[regularExpretion stringByReplacingMatchesInString:content options:NSMatchingReportProgress range:NSMakeRange(0, content.length) withTemplate:@&quot;-&quot;];//把多个&quot;-&quot;匹配为一个&quot;-&quot;</span><br><span class="line"> </span><br><span class="line"> //根据&quot;-&quot;分割到数组</span><br><span class="line">  NSArray *arr=[NSArray array];</span><br><span class="line"> content=[NSString stringWithString:content];</span><br><span class="line">  arr =  [content componentsSeparatedByString:@&quot;-&quot;];</span><br><span class="line"> NSMutableArray *marr=[NSMutableArray arrayWithArray:arr];</span><br><span class="line"> [marr removeObject:@&quot;&quot;];</span><br><span class="line"> for (NSString *str in marr) &#123;</span><br><span class="line">        NSLog(@&quot;呵呵-------------%@&quot;,str);</span><br><span class="line">     </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>去除字符串中所有得空格及控制字符：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str = [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet ]];</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -666,7 +676,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -687,8 +697,8 @@
               
               
               <div class="site-state-item site-state-tags">
-                <a href="/resources/index.html">
-                  <span class="site-state-item-count">5</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -737,7 +747,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#json-to-dic-arr-to-json"><span class="nav-number">1.</span> <span class="nav-text">json to dic , arr to json</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更改iOS状态栏颜色"><span class="nav-number">2.</span> <span class="nav-text">更改iOS状态栏颜色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断view是不是指定视图的子视图"><span class="nav-number">3.</span> <span class="nav-text">判断view是不是指定视图的子视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数字格式化"><span class="nav-number">4.</span> <span class="nav-text">数字格式化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSStirng-编解码"><span class="nav-number">5.</span> <span class="nav-text">NSStirng 编解码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CATransaction使用场景，什么时候触发"><span class="nav-number">6.</span> <span class="nav-text">CATransaction使用场景，什么时候触发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPS"><span class="nav-number">7.</span> <span class="nav-text">HTTPS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能优化-节省电量，流量"><span class="nav-number">8.</span> <span class="nav-text">性能优化  节省电量，流量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简述你对UIView、UIWindow和CALayer的理解"><span class="nav-number">9.</span> <span class="nav-text">简述你对UIView、UIWindow和CALayer的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么delegate属性都是assign而不是strong？为什么block属性都是copy而不是strong？"><span class="nav-number">10.</span> <span class="nav-text">为什么delegate属性都是assign而不是strong？为什么block属性都是copy而不是strong？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简述NotificationCenter、KVC、KVO、Delegate、Block？并说明它们之间的区别"><span class="nav-number">11.</span> <span class="nav-text">简述NotificationCenter、KVC、KVO、Delegate、Block？并说明它们之间的区别?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#initWithCoder-详解"><span class="nav-number">12.</span> <span class="nav-text">initWithCoder 详解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS不同版本的差异简单总结"><span class="nav-number">13.</span> <span class="nav-text">iOS不同版本的差异简单总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS性能优化方面："><span class="nav-number">14.</span> <span class="nav-text">iOS性能优化方面：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIView设置部分圆角"><span class="nav-number">15.</span> <span class="nav-text">UIView设置部分圆角</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图片上绘制文字-写一个UIImage的category"><span class="nav-number">16.</span> <span class="nav-text">图片上绘制文字 写一个UIImage的category</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIView的setNeedsLayout-layoutIfNeeded-和-layoutSubviews-方法之间的关系解释"><span class="nav-number">17.</span> <span class="nav-text">UIView的setNeedsLayout, layoutIfNeeded 和 layoutSubviews 方法之间的关系解释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整体视图动画"><span class="nav-number">18.</span> <span class="nav-text">整体视图动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么刷新UI只能在主线程？"><span class="nav-number">19.</span> <span class="nav-text">为什么刷新UI只能在主线程？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#volatile-是什么含义，给出三个不同例子"><span class="nav-number">20.</span> <span class="nav-text">volatile 是什么含义，给出三个不同例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络基础知识"><span class="nav-number">21.</span> <span class="nav-text">网络基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GET-amp-POST的区别"><span class="nav-number">21.0.1.</span> <span class="nav-text">GET &amp; POST的区别</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#json-to-dic-arr-to-json"><span class="nav-number">1.</span> <span class="nav-text">json to dic , arr to json</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更改iOS状态栏颜色"><span class="nav-number">2.</span> <span class="nav-text">更改iOS状态栏颜色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断view是不是指定视图的子视图"><span class="nav-number">3.</span> <span class="nav-text">判断view是不是指定视图的子视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数字格式化"><span class="nav-number">4.</span> <span class="nav-text">数字格式化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSStirng-编解码"><span class="nav-number">5.</span> <span class="nav-text">NSStirng 编解码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CATransaction使用场景，什么时候触发"><span class="nav-number">6.</span> <span class="nav-text">CATransaction使用场景，什么时候触发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPS"><span class="nav-number">7.</span> <span class="nav-text">HTTPS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能优化-节省电量，流量"><span class="nav-number">8.</span> <span class="nav-text">性能优化  节省电量，流量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简述你对UIView、UIWindow和CALayer的理解"><span class="nav-number">9.</span> <span class="nav-text">简述你对UIView、UIWindow和CALayer的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么delegate属性都是assign而不是strong？为什么block属性都是copy而不是strong？"><span class="nav-number">10.</span> <span class="nav-text">为什么delegate属性都是assign而不是strong？为什么block属性都是copy而不是strong？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简述NotificationCenter、KVC、KVO、Delegate、Block？并说明它们之间的区别"><span class="nav-number">11.</span> <span class="nav-text">简述NotificationCenter、KVC、KVO、Delegate、Block？并说明它们之间的区别?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#initWithCoder-详解"><span class="nav-number">12.</span> <span class="nav-text">initWithCoder 详解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS不同版本的差异简单总结"><span class="nav-number">13.</span> <span class="nav-text">iOS不同版本的差异简单总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS性能优化方面："><span class="nav-number">14.</span> <span class="nav-text">iOS性能优化方面：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIView设置部分圆角"><span class="nav-number">15.</span> <span class="nav-text">UIView设置部分圆角</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图片上绘制文字-写一个UIImage的category"><span class="nav-number">16.</span> <span class="nav-text">图片上绘制文字 写一个UIImage的category</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIView的setNeedsLayout-layoutIfNeeded-和-layoutSubviews-方法之间的关系解释"><span class="nav-number">17.</span> <span class="nav-text">UIView的setNeedsLayout, layoutIfNeeded 和 layoutSubviews 方法之间的关系解释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整体视图动画"><span class="nav-number">18.</span> <span class="nav-text">整体视图动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么刷新UI只能在主线程？"><span class="nav-number">19.</span> <span class="nav-text">为什么刷新UI只能在主线程？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#volatile-是什么含义，给出三个不同例子"><span class="nav-number">20.</span> <span class="nav-text">volatile 是什么含义，给出三个不同例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络基础知识"><span class="nav-number">21.</span> <span class="nav-text">网络基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GET-amp-POST的区别"><span class="nav-number">21.0.1.</span> <span class="nav-text">GET &amp; POST的区别</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#IOS-用正则表达式解析HTML等文件-得到所有文本获得网页内容"><span class="nav-number">22.</span> <span class="nav-text">IOS 用正则表达式解析HTML等文件,得到所有文本获得网页内容</span></a></li></div>
             
 
           </div>
