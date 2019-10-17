@@ -297,8 +297,7 @@
   
 </nav>
 
-
-
+ 
  </div>
     </header>
 
@@ -329,10 +328,10 @@
         
           <div class="category-all-page">
             <div class="category-all-title">
-                目前共计 3 个分类
+                目前共计 4 个分类
             </div>
             <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS基础/">iOS基础</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS面试必看/">iOS面试必看</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工作经验/">工作经验</a><span class="category-list-count">6</span></li></ul>
+              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS基础/">iOS基础</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS面试必看/">iOS面试必看</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工作经验/">工作经验</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/电影/">电影</a><span class="category-list-count">1</span></li></ul>
             </div>
           </div>
         
@@ -401,7 +400,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -412,7 +411,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -457,7 +456,7 @@
           
           
 
-          
+           
 
         </div>
       </section>
@@ -664,6 +663,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'mk0O1vG1wNWCc394AJ4KwJdW-gzGzoHsz',
+        appKey: 'nVpOG7jiWd2TMwoXRLlvDrdO',
+        placeholder: '欢迎文明评论，有问题写这里哦~ 小编看到后会第一时间回复您',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
